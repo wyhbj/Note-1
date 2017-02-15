@@ -1,0 +1,634 @@
+﻿First Week
+DAY-1----2016.08.29
+1.前端设计：网页中能看到的部分
+2.WEB标准： 结构---xHTML/HTML----由W3C制定
+                          表现---CSS----由W3C制定
+                          行为---DOM/ECMAScript/JavaScript----由ECMA制定
+3.HTML: Hypertext Markup Language--超文本标记语言
+4.HTML语法： 常规标记---<标记名 属性名="属性值"></标记名>
+                           空标记---<标记名 属性名="属性值"/>
+5.文件相对路径： 当HTML文件与目标文件在相同目录下，为src="文件名.扩展名"
+                               当HTML文件与目标文件的文件夹在相同目录下，为src="文件夹名/文件名.扩展名"
+                               当HTML文件的文件夹和目标文件的文件夹在相同目录下，为src="../文件夹名/文件名.扩展名"
+DAY-2----2016.08.30
+1. CSS: Cascading Style Sheet--层叠样式表
+2. HTML属性值与属性名之间用“=”连接；CSS属性值与属性名之间用“：”连接，用“；”结束
+3. CSS语法：选择符{属性:属性值;}---CSS由选择符和声明组成，声明由属性和属性值组成，属性与属性值之间用“：”连接，用“；”结束，属性与属性之间不分先后顺序，换行与空格不影响样式显示
+4. 行间样式表语法：<div style="属性名:属性值;"></div>---作用域为标签内
+5. 内部样式表语法：<style type="text/css"></style>---固定搭配---作用域为当前文档
+6. 外部样式表语法：<link rel="stylesheet" type="text/css" href="CSS文档地址"/>---CSS文档地址寻找代码同相对路径代码---作用域为当前链接的文档---rel定义链接
+                                  <style type="text/css">@import url(CSS文档地址);</style>---不常用
+                                  区别：1）link为XHTML的标签，@import为CSS提供的方式，link除了可以加载CSS以外，还可以做其他事情，如定义RSS，定义rel连接属性等，@import只能加载CSS；
+                                             2） 当页面被加载（浏览）link引用的CSS同时被加载，@import引用的CSS需等页面全部被加载完后再加载样式
+                                             3）@import在老版本的浏览器上不支持，只能在IE5以上的版本才能识别，link没有这个问题
+                                             4）使用dom控制样式时的差别：当使用javascript控制dom去改变样式的时候，只能使用link标签，因为@import不是dom可以控制的.
+7. 颜色表示：英文单词表示，eg:red
+						十六进制表示，eg: #0f0f0f
+						RGB表示，eg: rgb(100,100,100)-----rgba(100,100,100,0.5)，a为透明度，IE不支持透明度设置
+8. 边框类型（常用）：solid--实线；dashed--虚线/破折号线；dotted--虚线/点线
+9. 当设置多个div的不同样式时，使用#div名进行定义（内部样式表或外部样式表中，div名必须为英文或英文+数字）
+DAY-3----2016.08.31
+1. 边框三角形：border的宽 高均为0px；颜色为透明（transparent）；确定三角形方向并更改颜色；将对端border none掉
+2. 图片显示在page中：作为图片插入，使用<img src=""/>；作为背景插入，前提为应有相应的容器
+										区别：1）作为图片插入为结构，有独立的位置；作为背景插入为表现，要依附相应容器
+									               2）作为图片插入需占据文档位置，作为背景插入可以在图片上写内容
+3. 图片作为背景插入（background-image:url(图片地址)）：图片与元素大小一致，图片充满容器
+  									   图片小于元素，图片平铺至充满容器---background repeat:repeat; (default) 
+  									   																   background repeat: no-repeat; (不平铺，只显示一张图)
+  									   																   background repeat:repeat-x; (横轴平铺)
+  									   																   background repeat:repeat-y; (纵轴平铺)
+  									   图片大于元素，图片部分显示，默认从左顶点开始显示
+4. 背景图片定位：background-position：x y;
+5. 背景图固定：background-attachment:fixed(固定)/scroll(滚动)---default; 当设置为fixed时，背景图参考系为当前可视窗口
+DAY-4----2016.09.01
+1. 文本大小：{font-size:数值;}---默认大小16px---正文一般为12px
+2. 单位换算：9pt=12px---pt(磅)多用于印刷领域
+						为了减小系统间的字体显示差异，确定16px/ppi为标准字体大小默认值,即1em.默认情况下，1em=16px,0.75em=12px;
+						绝对大小关键字：medium=16px；small=13px；x-small=11px；xx-small=9px；large=19px；x-large=23px；xx-large=27px
+						如果字体大小量取为奇数，则人为+1
+3. 字体颜色：color
+4. 字体加粗：font-weight:bolder(更粗的)/bold(加粗)/normal(default);100-500(default)/600-900(加粗)
+						常用bold and normal
+5. 字体倾斜：font-style:italic(倾斜)/oblique(更倾斜)/normal(default)
+						常用italic
+6. 字体类型：font-family---字体为中文时需“”，字体为英文带空格时需“”---不常用
+7. 行高：line-height---当行高为奇数是，浏览器解析时上方比下方少1px
+										单行文本当没有给元素定义高度时，行高可撑开相应高度
+										当行高=元素高度时，文字垂直居中
+										当行高>元素高度时，文字垂直居下
+										当行高<元素高度时，文字垂直居上
+8. 文本是否大写：font-variant:normal(default)/small-caps(小型大写字母)---不常用---只对小写字母生效
+9. 文本顺序：font:style variant weight size family---顺序固定---size and family are necessary.
+						字体大小 、行高、字体简写eg：font:12px/2em "宋体";---这里em为字体大小
+10. 首行缩进：text-indent:2倍字体大小，px or em---这里em为字体大小
+11. 文本修饰：text-decoration:underline(下划线)/overline(上划线)/line-through(删除线)/none---常用于将a标签（超链接）下划线删除
+                          有href特性的a，以及u，ins对象默认值为underline 。
+                          对象strike，s，del，默认值是line-through。
+12. 文本间距：letter-spacing:数值;---隔开汉字与汉字，字母与字母
+						无论空格多少个都只解析一个
+13. 单词间距：word-sapcing:数值;---隔开单词与单词，隔开中文中以空格分割的部分
+DAY-5----2016.09.05
+1. 文本对齐方式：text-align:right(右对齐)/justify(两端对齐)/left(左对齐---默认)/center(中间对齐);----可以使<div>中的文本呈现相应的对齐方式；可以使<div>中的内联元素呈现相应对齐方式；可以使<div>内的图片呈现相应的对齐方式；可以继承，因此如果想让内联元素呈现相应的对齐方式，可给其包含元素一个对齐方式；直接给内联元素写没有效果，因为内联元素的宽由内容撑开
+2. 强制不换行：white-space:nowrap(不换行);
+3. 超链接：<a href="目标文件路径及全称/链接地址"/target="_blank---在新窗口中打开链接页面（会保留原窗口）/_self---在当前窗体打开链接页面（default）">链接文本/图片</a>
+					target---属性参数定义了打开链接的目标窗口
+					跳转到外部网址时需写全网站的地址eg:<a href="http://www.baidu.com"></a>
+					跳转到邮箱eg：<a href="mailto:lawrenceqxy@gmail.com"></a>
+					下载链接eg：<a href="showsocks.exe"></a>
+					空连接实质是跳转到页面的顶部；实现页面内部跳转，链接地址前需加#；锚点跳转步骤：1）给要跳转的锚点处加id 2）链接地址为#id名
+					超链接样式需单独写出，如写在div或body会因自身样式优先级比继承样式优先级高而无法显示
+Second Week
+DAY-1----2016.09.05
+1. 盒模型意义：调整元素所处位置
+2. 内边距：padding处理的是父元素与子元素的位置关系；处理的是容器与内容间的关系----padding位于父元素内；由于padding是附加在元素上的，因此会导致父元素宽高增加，为保持元素大小不变，需在父元素上减小相应padding大小。
+							padding方向：top right bottom left
+							写内边距方法：单独设置方向；单值代表四方向；两值代表上下与左右；三值代表上、左右和下；四值代表上、右、下和左
+							内边距不影响背景
+3. 外边距：marg处理同级元素位置关系----当两个div分别设置向上向下外边距，两者间距离为两个边距的极大值；
+																		 当两个div分别设置向左向右外边距，两者间距离为两边距的和；
+																		 当给父元素的第一个子元素写margin-top，父子元素上边界重合并加上边距，解决方法：1）用padding；2）给父元素+border；3）给父元素添加overflow:hidden;声明触发BFC
+																		 当父元素中最后一个子元素写margin-bottom，父元素增加下边距
+																		 当规定元素大小时，margin值不会增大元素大小
+4. 让两个div并排显示，需给每个div添加声明：display:inline-block；
+																		 div居中显示代码 margin:0 auto;----只能实现块元素的居中，不能继承，因此谁需要就给谁写
+																		 注：margin可以有负值，padd不能有负值
+DAY-2	----2016.09.06																	 
+常见标签：1）<div></div>---文档布局对象 没有默认样式
+				   2）<img src="图像地址" alt="" title="">---插入图像，默认宽高由图片本身决定；alt为图片未加载时显示的替代文字；title为鼠标悬停在图片位置时显示的文字，HTML的绝大多数标签都支持title属性，有利于网页优化
+				   3）<a href="" title=""></a>---插入超链接
+				   4）<h1></h1>---标题，共有h1-h6六种表示不同的标题大小；<h1>在同一网页中最多用两次，其他标题使用次数不限。注：语义化标签，即对不同内容使用不同标签
+				   5）<p></p>---段落，有默认外边距
+				   6）<br/>---强制换行
+				   7）<strong></strong>---表强调的加粗；加粗+强调，有利于标签语义化
+					   	 <b></b>---表加粗，没有强调意义
+注：结构化标签不只可以改变文本样式，同时带有强调意义；表现化标签只可以改变文本样式
+					8）<em></em>---表示强调的斜体
+						  <i></i>---表斜体，无强调意义
+					9）<span></span>---没有默认样式，可用来更改一小段话的样式
+					10）<ul>
+								 <li></li>
+							</ul>
+							无序列表，<ul>的子元素必须为<li>，整体构成无序列表，<li>内为列表项，一般用于导航栏；每个列表项前有一个默认的列表符号，可通过list-style属性进行更改；常用生命为list-style:none;，如果网页中列表项前有符号，一般作为背景插入，从而实现浏览器的兼容。
+					11）<ol start="起始数字" type="顺序类型如英文大写 小写字母">
+								 <li></li>
+							</ol>
+							有序列表，列表项有顺序
+					12）<dl>
+								 <dt>名词</dt>
+								 <dd>解释</dd>
+							</dl>
+							自定义列表，一定只能有一个<dt>，可以有多个<dd>，<dd>为对<dt>的解释；常用于图文并茂
+					13）<mark></mark>---标记，默认有黄色背景；为HTML5新标签
+注：HTML5新标签部分浏览器无法解析，以下标签均为HTML5新标签
+					14）<header></header>---页眉，用于页面头部信息的介绍，，也可用于版块头部，有利于语义化；为HTML5新标签
+					15）<nav></nav>---导航（包含链接的列表）；为HTML5新标签
+				 	16）<footer><footer>---页脚，用于页面底部的信息介绍，也可用于版块的底部，有利于语义化；为HTML5新标签
+					17）<section></section>---页面板块，划分页面的不同板块，或者划分文章里的不同的节；常用来包裹<div>；为HTML5新标签
+					18）<article></article>---用来在页面中表示一套结构完整且独立的内容部分；为HTML5新标签
+					19）<aside></aside>---可以包含与当前页面或主要内容相关的引用、侧边栏、广告、nav元素组，以及其他类型的有别于主要内容的部分
+					20）<time></time>---用来表示时间或日期
+DAY-3----2016.09.7
+常用选择器：1）id选择器---eg:  #id名{}---id名为英文或英文+数字；一个id名在文档中只能出现一次；最大用途为创建网页的外围结构
+					  2）类选择器---eg:  .class名{}
+					  3）标签（类型）选择器---eg:   div---标签选择器用途：改变某个元素的默认样式；统一文档的某个元素的显示效果
+					  4）通配符---   *   ---选中包括<html>在内的所有元素，优先级较低；常用来重置文档样式
+					  5）群组选择符---eg:   body,h1,p{}---当有多个选择符应用相同的样式时，可以将选择符用“，”分隔的方式，合并为一组。
+					  6）包含选择符---eg:   #box div{}---必须有包含关系才能够使用；语法为包含元素与被包含元素用空格隔开，可以多层嵌套
+					        子选择符---eg:   #div>p{}---只能选中子集，无法选中子集的子集
+					  7）伪类选择符---a:link {color: #FF0000;}          /* 未访问的链接 */
+												   a:visited {color: #00FF00;}	/* 已访问的链接 */
+												   a:hover {color: #FF00FF;}     /* 鼠标移动到链接上 */
+												   a:active {color: #0000FF;}	/* 选定的链接 */
+												  所有浏览器都支持a标签的伪类，但IE7以上版本不支持除了a之外的伪类
+选择器的权重：css中用四位数字表示权重，权重的表达方式如：0，0，0，0；
+						  权重规则：HTML标签的权重是1，class的权重是10，id的权重是100。
+						  类型选择符的权重为0001
+						  class选择符的权重为0010
+						  id选择符的权重为0100
+						  属性选择符的权重为0010
+						  伪类选择符的权重为0010
+					  	  伪元素选择符的权重为0010
+						  包含选择符的权重：为包含选择符的权重之和
+						  内联样式的权重为1000
+						  继承样式的权重为0000
+						  群组集合选择符权重为他本身
+样式表的权重：行间样式表最高，内部样式表和外部样式表看哪一个写在前面哪一个优先级高
+						  同一{}内后写的优先级高
+DAY-4---2016.09.08
+1. 块元素----div为没有任何默认样式的块元素；呈现出一个矩形区域；可以规定宽高；没有规定宽度时默认占满整行；由于是块元素，就算宽度没有占满整行，下一个元素也会换行显示；块元素支持所有的CSS属性；默认从上到下解析----块元素eg：div,p,h1-h6,ul,ol,li,dl,dt,dd
+2. 内联元素----写不上宽高，默认由内容撑开；相同类型元素从左到右解析；会解析空格；对于盒模型的解析左右方向正确，上下无法正确解析----内联元素eg：a,span,strong,em,mark
+						img特点：可以写宽高；没有写宽高时为图片的默认的宽高；可以解析空格；默认从左到右解析；只设置宽或高的时候会等比缩放
+3. 垂直对齐：vertical-align:top/bottom/middle；大多数用途为消除img底部默认间隙
+4. display可转换元素的属性---display:block;转换为块元素，转换后具有块元素的属性，不再具有内联元素的属性
+													display:inline;转换为内联元素，转换后具有内联元素的属性，不再具有块元素的属性
+													display:inline-block;既有块元素属性，又有内联元素属性
+5. 空格符：&nbsp;----所占大小为一个汉字大小
+6. 小于号：&lt;---less than
+7. 大于号：&gt;----greater than
+8. ©:&copy----表版权
+9. 重置样式：由于所有的元素的默认样式在不同系统以及不同浏览器中都有可能显示出不同的效果，所以所有元素的自带样式都不要用，需要进行清除
+10. 指针类型：cursor:pointer | text | move ....也可以使用图片eg：cursor:url(hand.cur),pointer;
+DAY-5----2016.09.09
+1. 在<p>标签内不能嵌套任何块元素，否则解析会出错
+2.在<dt>和<h>标签内嵌套块元素，虽然解析不会出问题，但不符合语法规范
+3. <a>标签内不能嵌套<a>标签
+4. 内联元素里不能嵌套块元素
+Third Week
+DAY-1----2016.09.12
+1. 浮动特点（位置）：脱离标准文档流，不再占据原来位置；仍然为块状元素，不解析空格与换行；左右浮动的意思为浮动到左右边界；浮动元素会在最近的保持正常文档流的元素下方显示；由于浮动元素是漂浮于正常文档流之上的，因此会将下一个保持正常文档流的元素覆盖；浮动元素在宽度足够时会紧靠前一个浮动元素并排显示；如果想让两个div并排显示，必须两个同时显浮动；浮动元素虽不占据位置，但解析顺序依然按照在文档中的书写顺序，eg：如果两个div都左浮动，那第一个div在最左边，后面的浮动元素依次紧贴，右浮动同理
+2. 浮动特点（元素变化）：原本如div没有写宽，默认占满整行，但一旦浮动，文档不在给其留位置，宽度默认变为由内容撑开；内联元素写完浮动后具有块元素特性，可以写宽高，且并不解析空格；一旦浮动后，元素会具有某些块元素的属性，如可以写宽高，不解析空格，同样也具有内联元素的特点，如没有写宽度时，宽度由内容撑开，并且元素可以并排显示；浮动过后的元素会提高层级，但是只能提高半层，因此可以透出被覆盖元素的文字和图片；可以利用浮动元素层级提高半层的原理，写出文字环绕效果：由于浮动元素dt不占据位置，所以dd会占据原来dt应有的位置，但是由于文字是不能被覆盖的，所以呈现文字环绕效果；由于浮动过后元素的宽由内容撑开（limit为父元素的宽），只要字的宽度过大，那么dd就无法浮动上去，因此一定要给dd加上宽度
+3. 高度塌陷：在父元素里的子元素都浮动且父元素没有规定高度，需靠子元素撑开高度的时候，会出现高度塌陷---父元素的高度为0
+DAY-2---2016.09.13
+1. 塌陷：主要是指高度塌陷，父元素无法被子元素撑开高度，因父元素中所有的子元素都浮动，脱离标准文档流，因此父元素无法获取子元素撑开的高度，但浮动的元素依然在父元素的宽度范围内。
+2. 给父元素规定高度时解决高度塌陷的一种方法，但该方法扩展性不强。
+3. 清除浮动：clear:left/right/both/none;
+	 使用方法1）在最后增加一个空<div>，注：此<div>增加为塌陷元素的子元素，添加声明clear:both;height:0;overflow:hidden;  
+	 					   因在IE6下有默认高度，因此需要height与overflow声明---overflow是对溢出容器内容的处理方式，默认为visible；如果overflow:scroll;则会出现横向和纵向的滚动条；如果overflow:auto;则会出现溢出方向上的滚动条；overflow-x可以只控制横向的溢出，overflow-y可以只控制纵向溢出
+	 					   缺点：但这周方法会给文档增加很多无用的标签，会导致文档负担变重，减少了文档的可阅读型，且增加一个空标记后所带来的影响并不能被完全清除
+	 				2）直接给父元素一个overflow:hidden;---可以触发BFC现象，同时可以解决margin值传递问题
+	 					  BFC---作用：包含浮动元素；不被浮动元素覆盖；阻止父子元素的margin值传递
+	 					  			  触发条件：float值不为none；overflow值不为visible；display的值为 table-cell、table-caption和inline-block之一；position的值不为 static或 relative中的任何一个
+	 				3）在浮动元素下方增加<br clear="both"/>
+	 				4）:after----为父元素动态添加一个子元素，且这个子元素永远是父元素的最后一个元素----同样:before为父元素动态添加一个元素，且这个元素永远是父元素的第一个元素--------------------eg：.clear:after{content:"";----必写，为给动态添加的元素增加内容，但由于内容为空，所以只需""
+	 													  display:block;---必写，将动态创建的元素转换为块元素，到这一步即添加了一个空div
+	 													  clear:both;---必写，用来清除浮动
+	 													  height:0;
+	 													  overflow:hidden;
+	 													  visibility:hidden;---控制内容不可见，仅视觉上，还会占据位置}
+	 						为兼容IE6，需添加声明.clear{zoom:1;}
+Fourth Week
+DAY 1----2016.09.18
+1. a:hover{}可以更改的属性：<a>本身的样式；<a>下的被包含元素
+2. 让一个元素消失的声明：display:none;
+	 让一个元素出现的声明：display:block;
+DAY-2----2016.09.19
+1. 定位：top, right, bottom, left分别为距离相应边界的值
+2. 相对定位：position:relative;
+						边界为自己本身，是相对于原来位置的移动
+						不会脱离标准文档流，文档会为其保留原来的位置
+						相对定位移动的元素会提升层级
+						如果二者层级相同且层叠，后写相对定位的元素会覆盖在先写的元素上
+						如果仅给元素添加position:relative;的声明，但并未对其进行位置的位移，对该元素不会产生影响
+3. 绝对定位：position:absolute;
+						绝对定位会脱离标准文档流
+						位移的参考系为文档本身
+						如果希望元素能够依照父元素的位置进行位移，那么就给父元素添加position:relative;的声明
+						包含块：即添加了定位属性的父元素，这个定位属性可以使绝对定位也可以是相对定位，一般使用相对定位
+						绝对定位元素会找距离自己最近的包含块进行位移，如果都没有定位属性，则依据文档本身进行定位
+						绝对定位元素会提升层级
+						关于层级只在同级元素间讨论
+						定位后内联元素可以支持宽高，块元素的宽度由内容撑开
+4. 固定定位：position:fixed;
+						根据可视窗口定位；因此在出现滚动条时，元素位置依然保持在窗口的原来的位置，不会根据滚动条的变化而变化
+						IE6不兼容position:fixed;
+						与绝对定位的特点基本一致，差别为参考系为可视窗口
+5. 定义层级：z-index:;
+						没有单位，只有数值，且必须是整数，可以为负值
+						只有在具有定位属性时才能生效
+6. 透明度：opacity:0~1;----兼容标准浏览器              filter:alpha(opacity=0~100);----兼容IE浏览器
+					当值为1时不透明，当值为0时完全透明
+					只要给元素添加了opacity的属性，背景和字都会透明；
+					解决方法：1）利用background:rgba()来使背景透明，不影响内容，这种方法不支持IE
+									   2）两个同级盒模型，一个写背景，另一个写内容，将透明度声明写在背景盒上，利用定位将两个盒模型重叠在一起
+DAY-3----2016.09.20
+1. border与padding在定位时的区别：当大盒子写过border后，子元素定位时会从border之后开始，如想将小盒子定位到大盒子的边缘，需要给小盒子定位的值写负值；如果写的是padding，则不会出现这种情况					
+2. 使用绝对定位使子元素居中：用绝对定位将子元素分别右移和下移50%，但由于此时移动的是左上角的点而不是整个盒模型，所以导致向右和向下分别多移动了半个盒子的大小，因此需要使用margin-left和margin-top来使子元素居中
+DAY-4----2016.09.21
+1. 表格----table 表格，thead 表格头，tbody 表格主体，tfoot表格尾，tr 表格行，th 元素定义表头，td 元素定义表格单元
+			如果给table写边框，只会出现最外层的边框；如果给td写边框，则每个td都有边框
+			在没有任何内容的情况下，给table写过宽高后，每个td具体宽高是平均分配
+			如果给td增加了内容，则td大小随内容变化
+			单元格间距----border-spacing:;
+			border-collapse可以控制边框是否重合，默认separate(分离)，设置为collapse时边框可以重合；只给table添加声明border-collapse:collapse;即可完成正常表格
+			vertical-align:;在td中声明可以控制单元格文字的垂直方向位置，默认为middle
+			td中默认有1px的padding值；可用padding:0;重置样式
+			th----表头单元格，为表格中具有标题意义的单元格；th单元格内容会自动加粗、居中
+			tbody---表格主体，没写时浏览器默认添加，建议写表格时加上，没有tbody嵌套的表格无法获取数据
+			thead----表头；tfoot----表尾；一个表格只可以有一个thead和tfoot，但是可以有多个tbody
+2. 单元格合并：横向合并----<td colspan=""></td>，引号内的值确定合并单元格的数量
+						   纵向合并----<td rowspan=""></td>，引号内的值为合并单元格的数量
+3. table-layout----表格布局算法；当值为fixed时，可以默认将td平均分配宽度，填充内容不会更改宽度，默认值为auto，即按浏览器解析自动分配宽度，当内容增多时，宽度也会随之改变
+4. 无内容单元格显示/隐藏----empty-cells:show/hide;
+DAY-4----2016.09.22
+1. 表格的边框以及内边距不是附加在表格上的，而是算在表格的宽高之内的，因此量取时要将表格的内边距和边框量在内
+2. 在同一个table内部，margin值是不能正常显示的，但是table与table之间是可以用margin值隔开的；
+3. 表单的组成部分----表单域<form></form>，是块元素，当写完<form>标签后，会在设计视图里出现红色方框，所有表单元素都应放在方框内
+							  表单控件，即所有的表单元素
+							  		<input type="…… " name="" value="" /> 
+							 		 type属性----text              文本框----可以输入文字，默认为白色的背景色，用background:none;重置；默认有padding值用padding:0;重置；默认有边框，用border:0;重置；placeholder可以做到输入内容但不占据位置，类似淘宝搜索框
+											   		   password     密码
+														radio            单选----name属性为必须项，可以将相应的单选框归为一类，需value属性才能使后台获取到相应的信息
+														checkbox     复选
+														submit         提交----添加声明outline:none;可以消除点击时出现的边框
+														reset            重置----重置会清空已填写的内容，只能重置同一个表单内的内容
+														button         按钮----添加声明outline:none;可以消除点击时出现的边框
+														image          图片----带有提交功能的图片按钮，用普通的提交按钮在给提交按钮插入背景图片也可以实现同样效果，且传输速度更快，调整更灵活，所以该属性不常用
+														file               上传----如想实现多选可以添加multiple属性，eg：  <input type="file" mutiple/>
+														hidden         隐藏
+							 		 value属性在可以输入文本的表单里为文本框内的默认值，在不能输入文本的表单里必须添加此属性才能使后台获取参数
+							  提示信息，即写在表单控件前提示用户输入信息的文字，提高友好性
+4. 下拉菜单：<select><option></option></select>-----border算在宽高之内，所以测量的使用要算上border的大小
+5. 文本域：<textarea></textarea>----可以在里面输入大段文字，可以用html属性控制宽高，cols="字符宽度" rows="行数"
+5. 表单字段集：<fieldset></fieldset>将信息集合在一个大方框内，可以用来给表单分块
+6. 字段集标题：<legend></legend>将字段集标题文字浮在字段集上边框；默认带边框与内、外边距
+7. 信息绑定标签：<lable></lable>，常用做<input type="checkbox" name="" id="a"/>	<label for="a">……</label>，将提示信息与相应的表单控件绑定，达到点击提示信息就可以自动聚焦到相应的控件的目的
+8. 默认选中----checked，可以给单选框和复选框使用
+	默认禁用----disabled，只能看不能修改
+	默认选中下拉列表项----selected，写给下拉列表
+9. form有两个重要的属性：action为提交表单后的跳转地址；method:get/post;为提交方式，为get时相关表单信息会出现在url中，安全性差，速度快；post较安全，但效率低
+Fifth Week
+DAY-1----2016.09.26
+1. 网页制作技巧：无论多么复杂的页面，先分成大块，然后对具体的块再细分；
+						 将分完的大块的样式写出来，让页面有一个整体的效果；
+						 当遇到一个需要占满整屏的页面时，可以给内容部分加一个盒子包裹起来，给这个盒子一个宽，接着让这个盒子居中，既可以达到让所有内容部分居中，又可以达到如果内容部分不写宽默认就是这个盒子的宽度；缺点：因为浏览器加载时会依据标准文档流从上到下依次解析，那么在加载container时需全部加载完，可能会影响加载速度；注：只是分析优缺点，具体还要参考页面的布局，并不代表有缺点就不能用，可以视具体情况运用不同的方式；
+DAY-2&3----2016.09.27&2016.09.28
+1. 搜索框写法：搜索框由两部分组成，文本框+提交按钮，由于要实现提交功能，因此必须用form标签套住
+					  两个input元素距离顶边的高不一致，而且会解析空格，因此要将两个input同时浮动
+					  input标签有默认的内外边距，因此要重置；另外文本框有默认的border和背景色，提交按钮也有，因此要将二者原来默认的设置为：none;
+					  如果搜索框外层有边框，将边框加在父元素上即可；
+					  如果提交按钮有背景正常插入背景即可；
+2. 低版本浏览器兼容H5：eg:	<script>document.createElement("section");</script>
+										<style>section{display:block;}</style>
+								手动创建标签是一定要添加元素类型，因为默认添加的是内联元素
+3. IE6 bug：1）1px点线解析有问题，显示跟一般浏览器不一样，可以用背景代替
+				   2）当元素浮动后需用内容撑开宽度时，解析会出现问题；解决：给浮动元素写宽或给浮动元素内的块元素加浮动
+				   3）当第一个元素浮动，第二个元素加margin值刚好为第一个元素的宽时，会出现间隙；两个元素都加浮动可以解决该问题
+				   4）子元素的宽高超出父元素时，会将父元素撑开；在一般浏览器中子元素溢出不会给父元素宽高带来任何影响；尽量不要让子元素宽高大于父元素
+				   5） IE6下有一个默认的最小高度19px，即当元素规定的高小于19px时，便会将高度直接撑到19px高；解决：添加声明font-size:0;或添加声明overflow:hidden;
+				   6） IE6里一个盒子里的所有元素都浮动后，无论浮动方向与外边距方向是否一致，外边距方向第一个浮动元素都会将外边距解析成原来的两倍；解决：给浮动元素添加声明display:inline; 注：对元素本身不会有影响，因元素已经浮动过，可以写上宽高
+				   7） 如果用一个div包住一个图片会发现在图片标签会将div下方撑大3px；解决：正常是给图片写vertical-align:top;即可解决这个问题，在IE6中如果将div标签的结束标签与图片标签写在同一行则可以解决；如果是用dt包裹图片，就不能用以上方法解决；所以综合起来解决方法1）给图片添加声明vertical-align:top; 2）将图片转成块元素，但这种方法会改变img元素类型
+				    8）IE6下按钮双重边框：如果要在按钮上加边框，则一定要将这个边框附加在父元素上，因为只要加在按钮上的边框，一定还会出现一层黑的边框造成双重边框效果；解决：消除点击按钮，文本框等出现线型的方法是给相应的表单元素添加声明outline:none;  注：IE6无法识别border:none;需写成border:0;
+				    9）IE6里的height就相当于一般浏览器的min-height；最小高度：因为有一些板块是需要用内容撑开的，但是为了防止没有内容时，该板块高度为0，造成整个页面布局效果不佳因此可以局限设置一个最小高度，及在没有内容及内容很少的情况下还能撑开这个高度，保持页面的整体布局
+				   10）在无序列表中包含<a>标签，只给li写浮动，不给a写浮动，会出现浮动失效的问题；在无序列表中包含<a>标签，只给a写浮动，不给li写浮动，会出现阶梯状显示问题；解决：如果想布局正常，需li和a都要有浮动
+				   11）在IE6和IE7中，当li中每个元素都浮动之后，li下方会出现4px的空隙；解决：给li添加声明*vertical-align:top;
+				   12）当浮动元素与父元素的宽相差小于3px时，如果浮动元素间出现注释或内联元素，都会导致多复制文字；解决：让浮动元素与父元素的宽相差大于3px或不在浮动元素间添加注释或内联元素；只要不让div的结束标签与文字在同一行也不会出现该现象
+				   13）overflow:hidden;无法包裹住定位属性为relative的元素；解决：给父元素添加声明position:relative;
+				   14）当绝对定位元素与浮动元素是同级关系时，如果浮动元素推移到父元素的边缘，绝对定位元素会消失；解决：不让绝对定位元素与浮动元素写在同级
+				   15）input文本框被一个父元素包起来的时候，在IE6/7中会出现上下默认的间距，文本框和按钮距离顶端的间距不同，相邻的input换行后会解析空格；解决：给input添加声明float:left; 
+				   16）无法解析display:inline-block; IE6/7中没有BFC功能，只有haslayout，触发haslayout的方式为添加声明*display:inline;*zoom:1;
+				   17）当包含块的宽高为奇数时，子元素的绝对定位会有1px的偏差；解决：尽量不要写奇数的宽高
+				   18）可编辑的表单元素（eg:文本框 密码框）会出现背景滚动问题；解决：添加声明background-attachment:fixed;将背景固定
+				   19）不支持png24格式的图片的背景透明；解决：用JS方法，此时不能支持body透明；用CSS方法解决，需添加声明：_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="图片路径",sizeingMethod="scale");此时只能让背景图片的背景透明，如果是作为图片结构的话，是不能解决问题的；不支持平铺，不能移动位置；
+4. 过滤器：可以用下划线过滤器让只让IE6识别height属性，eg：_height:50px;只有IE6可以识别；用法：_属性:属性值;
+				星号过滤器兼容IE7及以下的浏览器，eg：*background-color:red;  用法：*属性:属性值;
+				\9过滤器：用法：属性:属性值\9;
+DAY-4----2016.09.29
+1. 图片整合：1）必须是用于背景图时；2）当为小图标类建议将其纵向排列；3）技巧：复制需要的图标图层到同一个ps文档中，如果需要做容错，即将图片间的距离拉大即可，图片间的距离以代码结构为依据；4）利用background-position去实现图片各个部分的显示  
+DAY-5----2016..9.30-----Ready to celebrate the birthday of PRC
+整站：公共部分样式写在一个CSS文档内，只要有需要的样式就去调用这个CSS文档
+		 不同的部分写在同一个CSS文档内，命名时加上该页面名称的前缀，避免重名；谨记：一定要写注释！！！！！！！
+		 命名规范：不管是CSS命名还是页面的命名
+		 当banner图时占整屏的时候，要给img写width:100%;，但是此时图片会等比缩放，因此要给其一个高度的声明
+		 当将banner图作为背景时，需给其background-position:center;
+		 最小高度：min-height；最大高度：max-height；最小宽度：min-width；最大宽度：max-width
+Seventh Week
+DAY-4----2016.10.13
+HTML5新标签----语义化标签
+1. <hgroup></hgroup>-----标题组，用于将页面上的标题标签组合在一起，eg:<hgroup><h1></h1><h2></h2></hgroup>
+2. <nav></nav>----导航组，eg:<nav><p><a href=""></a></p><p><a href=""></a></p></nav>或<nav><h2></h2><ul><li></li><li></li></ul></nav>
+3. <section></section>----页面板块，用于分块或文章板块
+4. <artical></artical>----用来在页面中表示一套结构完整且独立的内容部分---可以用来呈现论坛的一个帖子，杂志或报纸中的一篇文章，一篇博客，用户提交的评论内容，可互动的页面模块挂件等。
+5. <aside></aside>----用来做侧边栏、广告、、nav元素以及其他与主要内容有区别的内容
+									aside 的内容应该与 article 的内容相关。
+									被包含在<article>中作为主要内容的附属信息部分，其中的内容 以是与当前文章有关的引用、词汇列表等
+									在<article>之外使用，作为页面或站点全局的附属信息部分；最典型的形式是侧边栏(sidebar)，其中的内容可以是友情链接、附属导航或广告单元等。
+6. <figure></figure>----用于对元素进行组合，一般用于图片或视频
+									  <figcaption> <figcaption> figure的子元素 用于对figure的内容 进行说明
+									  eg:<figure><img src=“miaov.png”/><figcaption> 妙味课堂 photo &copy 妙味趣学</figcaption></figure>
+									  等同于语义化的<dl><dt></dt><dd></dd></dl>
+7. <details></details>----用于描述文档或文档某个部分的细节，该元素用于摘录引用等，应该与页面的主要内容区分开的其他内容
+									< summary></summary> 为details 元素的标题,summary是一个需要被描述的部分，而接下来的部分是对summary的一个描述，需要点击才能展开；open可以让整个details默认展开；
+									eg: <details><summary>妙味课堂</summary><p>国内将知名的IT培训机构</p></details>
+8. <dialog></dialog>----对话，eg: <dialog><dt>老师</dt><dd>2+2 等于？</dd><dt>学生</dt><dd>4</dd><dt>老师</dt><dd>答对了！</dd></dialog>
+9. <mark></mark> ----标记
+10. <progress><progress>----进度条，eg: <progress max="100" value="76"><span>76</span>%</progress>
+											   max指的是进度条上最大的值，value是当前的值；
+											   <span></span>声明是为了兼容低版本
+DAY-5----2016.10.14
+HTML5新标签----表单控件元素
+12. <input type="email"/>----邮箱，会在提交时验证，但验证条件不完善，只需内容@内容即可，在移动端会切换为英文键盘
+												eg: <input type="email"/><input type="submit" value="提交"/>---注：提交控件必须存在
+13. <input type="tel"/>----电话号码，不验证，在移动端会切换为数字键盘
+												eg: <input type="tel"/><input type="submit" value="提交"/>---注：提交控件必须存在
+14. <input type="url"/>----网页URL，会验证，但是不完整，提交时需提交带有http://的完整网址
+												eg: <input type="url"/><input type="submit" value="提交"/>---注：提交控件必须存在
+15. <input type="search"/>----搜索框，不会验证，在某些浏览器中搜索框右方会出现x
+												eg: <input type="search"/><input type="submit" value="提交"/>---注：提交控件必须存在
+16. <input type="range" />----特定范围的数值选择器，可添加属性min/max/step/value，step属性规定每一次拖动的步数，标尺只能停在step的倍数值处，value默认为中间值
+17. <input type="number"/>----输入数值框，会在框中出现上/下箭头，点击时增/减数值
+18. <input type="color"/>----颜色框，点击会出现选色板
+19. <input type="date"/>----日期，会出现一个包含年/月/日的面板
+20. <input type="week"/>----周，会出现一个包含年/周的面板
+21. <input type="month"/>-----月，会出现一个包含年/月的面板
+HTML5新标签----表单控件属性
+22. <input type="" placeholder=""/>----输入框提示信息，会出现浅色文字，但不占据实际位置，输入内容后自动消失
+23. <input type="" autocomplete="on/off"/>----保存用户输入值，默认为on，当值为off时不保存输入信息，保护用户信息安全
+24. <input type="text" list=""/><datalist></datalist>----选项列表，与 input 元素配合使用，来定义 input 可能的值。
+											eg:<input type="text" list="valList" />
+    											 <datalist id="valList"><option value="javascript">javascript</option><option value="html">html</option><option value="css">css</option></datalist>
+24. <input type="autofocus" />----自动聚焦，可以自动聚焦到相应的输入框
+25. <input type="required" />----必填项，会验证，当输入内容为空时无法提交
+26. <input type="submit" formaction=""/>----定义submit提交地址
+Eighth Week
+DAY-1----2016.10.17
+CSS3新样式----属性选择器----IE7以上可支持
+1. E[attr]--标签名[属性名]----选中具有该属性名的标签进行样式的改变，与属性值无关
+					  eg: input[value]----只改变带有value的input标签的样式
+2. E[attr="value"]--标签名[属性名="属性值"]----选中具有该属性值的标签进行样式的改变
+									 eg: input[type="button"]----只改变type="button"的input标签的样式
+3. E[addr~="value"]--标签名[属性名~="输入值"]----选中属性值为词列表，词列表中包含输入值，词与词间是以空格隔开的标签进行样式的改变
+										 eg: <input type="text" name="aa bb"/>
+										 		input[name="aa"]或input[name="bb"]均可以选中该input标签
+4. E[addr^="value"]--标签名[属性名^="输入值"]----只改变属性值中以输入值开头的标签
+										 eg: input[type^="b"]----选中type属性名中以b开头的属性值的input标签
+5. E[addr$="value"]--标签名[属性名$="输入值"]----只改变属性值中以输入值结尾的标签
+										 eg: input[type$="b"]----选中type属性名中以b结尾的属性值的input标签
+6. E[addr*="value"]--标签名[属性名*="输入值"]----只改变属性值中具有输入值的标签
+										 eg: input[type^="b"]----选中type属性名中含有字母b的属性值的input标签
+7. E[addr|="value"]--标签名[属性名|="输入值"]----改变属性值中以输入值开头的标签或属性值为输入值的标签
+										 eg: input[type|="b"]----选中type属性名中的属性值=b或者是属性值以b开头的的input标签
+CSS3新样式----结构性伪类----IE9以上可支持
+8. E:nth-child(n)----选中E的父元素中第n个子元素，且这个子元素必须是E，n为索引值，可自行制作索引规则----仅支持IE9以上
+	 E :nth-child(n)----选中父元素E下的第n个子元素，元素类型不限
+9. E:nth-last-child(n)----选中E的父元素中第n个子元素，从后向前计算，且这个子元素必须是E，n为索引值，可自行制作索引规则
+10. E:first-child----选中E的父元素中第一个子元素，且这个子元素必须是E
+11. E:last-child----选中E的父元素中最后一个个子元素，且这个子元素必须是E
+12. E:nth-of-type(n)----选中E的父元素中第n个同级同类子元素，n为索引值，可自行制作索引规则
+	   E :nth-of-type(n)----选中父元素E下的第一级子元素中所有不同类型标签的第n个
+13. E:nth-last-of-type(n)----选中E的父元素中第n个同级同类子元素，从后向前计算，n为索引值，可自行制作索引规则
+14. E:first-of-type(n)----选中E的父元素中第一个同级同类型子元素
+15. E:last-of-type(n)----选中E的父元素中最后一个同级同类型子元素
+16. E:only-child----选中包含E的所有父元素中只有一个子元素的父元素的E
+17. E:only-of-type----选中包含E的所有父元素中E只有一个的所有父元素的E
+18. E:target----选中当前点击的超链接跳转到的元素
+19. E:enabled----选中所有可以点击的E，常用给表单控件，注：所有表单元素都是可以点击的
+20. E:disabled----选中所有不可点击的E，常用给表单控件，想要让表单元素不能被点击，需在行内增加disabled属性
+21. E:checked----表示已选中的checkbox或radio
+22. E:first-line----选中E中的第一行内容
+23. E:first-letter----选中E中的第一个字符
+24. E::selection----表示用户选中时，注：此伪类标签后有两个":"
+25. E::before----给父元素E此声明，会在父元素E的开始出生成新内容
+26. E::after----给父元素E此声明，会在父元素E的开始出生成新内容
+27. E:not(s)--标签名:not(选择器)----选中除了s(selector)以外的所有E
+	   E :not(s)----选中父元素E下不是s选择符的所有同级元素
+28. E~F----选中E元素下方的F元素
+番外：让一个div消失的方法
+1.background:#fff; 这种方法只能让这个div看不到，但是依旧占据位置
+2. diplay:inline; 该方法只适用于空div
+3. display:none;
+4. opacity:0;
+5. position:absolution; left:-999999999999px; 最好是左和上方向的极大值
+6. margin-left:-999999999999999999px;
+7. z-index:-9999999;
+8. rgba
+9. visibility:hidden; 只是视觉上看不见，依旧占据位置
+DAY-2----2016.10.18
+1. 文字阴影：text-shadow: x y blur color;----横向偏移 纵向偏移 模糊距离 模糊颜色
+				       可以叠加显示，eg: text-shadow:x y blur color, x y blur color;  先解析后面，后解析前面
+				       IE10+兼容
+2. 文字描边：-webkit-text-stroke:宽度 颜色; 
+						只兼容chrome和Mozilla Firefox
+3. 文本方向：direction:ltr(从左至右 默认)/rtl(从右至左); 
+						要配合unicode-bidi:bidi-override; 一起使用
+						IE6+兼容
+4. 文本省略号：text-overflow:clip(无省略号)/ellipsis(省略);----注：必须为单行文本
+							步骤：1）规定宽，让文本有一个边界；2）white-space:nowrap;让文本保持单行显示；3）overflow:hidden;让超出边界部分隐藏；4）text-overflow:ellipsis;使文本末端显示省略号
+							IE6+兼容
+5. 自定义文字：@font-face {
+													font-family:miaov;----定义字体名称
+													src: url('font/websymbols-webfont.eot');----IE9 Compat Modes
+   						 							src: url('font/websymbols-webfont.eot?#iefix') format('embedded-opentype'),----IE6-IE8
+         													url('font/websymbols-webfont.woff') format('woff'),----Modern Browsers
+         													url('font/websymbols-webfont.ttf') format('truetype'),----Safari, Android, iOS
+         													url('font/websymbols-webfont.svg#untitledregular') format('svg');----Legacy iOS
+    												font-weight: normal;
+	    											font-style: normal;
+	    											}
+6. 盒模型阴影：box-shadow: [inset] x y blur [spread] color;
+							inset：向内投影，不写时为向外投影
+							spread：扩展半径，与模糊半径的关系为先扩展然后在扩展半径的基础上模糊
+7. 怪异盒模型：box-sizing:border-box; 
+							默认值为content-size----正常和模型
+							正常盒模型大小为width与height，border与padding时附加在盒模型上的
+							怪异盒模型大小会计算border与padding
+8. 自由缩放：resize:both(横纵均可缩放)/horizontal(横向缩放)/vertical(纵向缩放)；
+						要配合overflow:auto;使用
+						一般只使用水平方向缩放
+9. 圆角：border-radius----单值代表四角的横纵轴半径；双值代表左上右下角和右上左下角的横纵轴半径；三值代表左上角、右上左下角和右下角的横纵轴半径；四值代表左上角、右上角、右下角和左下角的横纵轴半径；
+				如果要单独区分横、纵轴半径，则以"/"区分，"/"前为横轴半径，"/"后为纵轴半径
+				可以使用百分比操作
+10. 背景：background: url() x y no-repeat,url() x y no-repeat,url() x y no-repeat; ----插入多张背景图片，并调整背景图片位置
+					解析顺序：先解析后面的，后解析前面的，所以先写的背景图会覆盖在后写背景图的上方
+		背景尺寸：background-size----可规定宽高；当值为cover时，图片等比伸缩使得图片的高度等于容器的高度；当值为contain时，图片等比伸缩使得图片的宽度等于容器的宽度
+																控制多个背景图的尺寸时，可用","隔开
+		背景起始位置：background-origin: padding-box(从padding位置开始填充，默认)/content-box(从内容部分开始填充)/border-box(从border部分开始填充);
+		背景裁剪：background-clip: padding-box(填充到padding结束的位置)/content-box(填充到内容结束的部分)/border-box(填充到border结束的部分，默认)/-webkit-text(当字体颜色透明时，字体颜色为背景图，只有字体部分显示背景图，其余部分不显示，仅chrome可支持);
+						   当background-clip值与background-origin不同时，按background-clip显示
+DAY-3----2016.10.19
+移动端
+1. 重新声明一个meta：<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+										name="viewport"是为了定义视口的详细信息；width=device-width是为了使页面宽度等于设备宽度；user-scalable为是否允许缩放 （no||yes），一般为no；initial-scale为初始比例；minimum-scale为允许缩放的最小比例；maximum-scale为允许缩放的最大比例
+	一般用JavaScript来设置初始化缩放比例：<script>
+																						 var iScale = 1 / window.devicePixelRatio;   ----定义一个缩放比例=1/像素比，缩放比例名称按个人喜好确定
+																						 document.write('<meta name="viewport" content="width=device-width,initial-scale='+iScale+',minimum-scale='+iScale+',maximum-scale='+iScale+',user-scalable=no"/>');
+																		</script>
+2. 单位：px、em为静态单位，不会随屏幕大小而改变，可能会导致在不同屏幕大小的情况下布局错乱
+				百分比为动态单位，但每一层的参照物都是其父集，意味着需要不断更改参考值
+				rem，r为root根元素，可使用JavaScript根据屏幕大小自动获取：<script>
+																																				var iWidth = document.documentElement.clientWidth;
+																																				document.getElementsByTagName('html')[0].style.fontSize = iWidth / 64 + 'px'; -----数字"64"处可按需更改，一般为16
+																																</script>
+				这种方法会根据屏幕宽度计算相应的rem代表的值，在规定宽高和字体大小时计算像素值对应的rem，保证在不同分辨率下位置不会改变
+3. 清除点击链接和文本框对象时默认的灰色半透明覆盖层(iOS)或者虚框(Android)：a{-webkit-tap-highlight-color:rgba(0,0,0,0);}
+4. 消除输入框和按钮的原生外观，在iOS上加上这个属性才能给按钮和输入框自定义样式：input{
+																																								-webkit-tap-highlight-color:transparent;
+																																								-webkit-appearance: none;
+																																								}
+Ninth Week
+DAY-1----2016.10.24
+1. 过渡：transition---transition-property  要运动的样式  （all || [attr] || none）
+									   transition-duration 运动时间
+									   transition-delay 延迟时间
+									   		当值为Xs Ys时，X为运动时间，Y为延迟时间
+									   transition-timing-function 运动形式 :ease：（逐渐变慢）默认值, linear：（匀速）, ease-in：(加速), ease-out：（减速）, ease-in-out：（先加速后减速）, cubic-bezier 贝塞尔曲线（ x1, y1, x2, y2 ） 
+2. 遮罩：mask-image/position/repeat
+				为兼容chrome，需增加-webkit
+				<script>
+					var oDiv = document.getElementById('box');
+					oDiv.onmousemove = function(ev){
+					oDiv.style['-webkit-mask-position'] = (ev.clientX-50)+'px '+(ev.clientY-36)+'px';
+				}
+				</script>
+				以上代码可以实现mask跟随鼠标移动而移动
+3. 边框图片：border-image
+						border-image-source:图片路径；
+						border-image-width:定义边框视觉宽度，但实际宽度仍未border设定的值；
+						border-image-slice:图片分割，定义四条分割线的位置；
+						border-image-outset:边框图片扩展值，但不影响实际范围；
+						border-image-repeat:定义边框背景重复方式，repeat/round/stretch
+						当左右分割线的距离宽加起来超过了边框背景图片宽，则上部和下部会消失；
+						当上下分割线的距离高加起来超过了边框背景图片高，则左部和右部会消失；
+						repeat和round的区别：
+						repeat只是简单的复制，重复；
+						round会让背景图适应盒子的宽高，铺满整个border，不多也不少；
+DAY-2----2016.10.25
+1. 利用Photoshop画出渐变：1）.在ps里选取渐变工具，然后鼠标最后松开时在哪儿，渐变就在哪儿完成；
+										   2）.在图层上按右键，选中混合选项，然后选中混合选项中的渐变叠加，就可以看到角度，渐变方式以及渐变的颜色值。
+2. 线性渐变：linear-gradient:角度或方位值，开始颜色，过渡颜色，结束颜色；用角度的时候是逆时针转的；----为兼容chrome需添加前缀-webkit
+					   repeating-linear-gradient会平铺渐变的部分（一定要有一个具体的范围才能平铺）；
+					   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#ff0000',GradientType='0');----兼容IE
+3. 径向渐变：radial-gradient([<起点>],[<形状> || <大小>,] <点>, <点>…);
+						圆心的默认值是盒子的正中心；
+						默认情况下，渐变圆的x，y轴半径与盒子的宽高相关，所以当盒子宽高相等时渐变园呈圆形，当不等时，呈椭圆形；
+						第一对值确定的是圆心的位置，第一个值是x轴的位置，即距离盒子左边界的值；第二个值是y轴的位置，即距离盒子上边界的值；
+						第二队值是圆的半径，第一个是圆的x轴半径，第二个是圆的y轴半径；这个值可以写ellipse、circle,默认值是ellipse，当写成circle时，不管在什么条件下，都会变成圆；	
+						大小可以用关键字表示：最近端，最近角，最远端，最远角，包含或覆盖 (closest-side, closest-corner, farthest-side, farthest-corner, contain or cover)；
+						Firefox只能识别关键字，不能识别数值
+DAY-3----2016.10.26
+1. 弹性盒模型
+display:flex，是display:box的进化版但是兼容性
+						   	  flex-direction 设置主轴方向
+														row  从左向右排列(默认值)
+														row-reverse 从右向左排列-----会让盒子的顺序反向，同时会让盒子所在的方向反向，类似于float:right的效果；
+														column 从上往下排列
+														column-reverse 从下往上排列
+							  justify-content 设置主轴对齐方式
+															flex-start (默认) 元素在开始位置 富裕空间占据另一侧----让元素贴着开始的位置，然后自然空出，默认值；
+															flex-end 富裕空间在开始位置 元素占据另一侧----让元素贴着结束的位置，剩出开始的地方；
+															center 元素居中 富裕空间 平分左右两侧
+															space-between 富裕空间在元素之间平均分配
+															space-around  富裕空间在元素两侧平均分配
+							  align-items	设置侧轴对齐方式
+													flex-start (默认) 元素在开始位置 富裕空间占据另一侧
+													flex-end 富裕空间在开始位置 元素占据另一侧
+													center 元素居中 富裕空间 平分左右两侧
+							  flex-wrap 换行
+												nowrap (默认) 不换行----根据会根据父元素宽度弹性调整子元素宽度使全部子元素在同一行显示
+												wrap 换行----可以像正常文档流一样，当大盒子撑不下的时候，换行显示；
+												wrap-reverse 反向换行----换行指的是一行整体顺序改变，与小盒子无关
+							  align-content 堆栈伸缩行----设置一行子元素在侧轴的显示位置
+							  							flex-start 元素在开始位置 富裕空间占据另一侧
+														flex-end 富裕空间在开始位置 元素占据另一侧
+														center 元素居中 富裕空间 平分左右两侧
+														space-between 富裕空间在元素之间平均分配
+														space-around  富裕空间在元素两侧平均分配
+相关子元素的属性
+		order:数值; 显示顺序----会根据order的属性值的数值来选择子元素的显示位置
+		margin:auto;----让子元素根据富裕空间来进行水平和垂直方向的居中显示
+		align-self 侧轴对齐
+						  flex-start (默认) 元素在开始位置 富裕空间占据另一侧
+						  flex-end 富裕空间在开始位置 元素占据另一侧
+						  center 元素居中 富裕空间 平分左右两侧
+						  注意：参照的是子元素自己的侧轴；当是单行子元素时，子元素占据整列父元素的高；当为多行子元素时，位于同一列的子元素均分父元素的高；每个子元素会根据自己所占据的竖直方向的位置来进行对齐
+		flex 伸缩性
+				flex: 数值;----将父元素均分为所有数值之和的份数，每个子元素会根据自己的数值来弹性调整宽度，从而占据相应份数的水平方向位置
+				flex: auto;----会自动填满父元素的宽，弹性调整子元素的宽
+				flex: none;----默认值
+2. 其他盒模型新增属性
+box-reflect 倒影，box-reflect: 方向(above|below|left|right) 距离;----距离为倒影距离原来图像的位置
+								注：为兼容chrome需添加前缀-webkit
+DAY-4----2016.10.27
+响应式
+在内部样式表中添加@media (min-width:) and (max-width:)的声明，在引入外部CSS文档时添加media=" (min-width:) and (max-width:)"属性，min-width或者max-width包含当前的输入的像素值；当发现有重合的像素，就将像素做1px的加减；让当只有在该宽度值范围内时使用，当不在该宽度值范围内时不引用。由于符合条件的区间不仅认识该区间的样式，还能识别原始状况下的样式，所以一定要将媒体查询的样式放到原始样式下方
+也可以使用<style>			@import url("") (min-width:300px) and (max-width:600px);		</style>来引用CSS样式表
+Last Week
+DAY-1----2016.10.31
+2D转换：transform
+1. 旋转：rotate(Xdeg)，取值度数
+	transform-origin:x y 旋转的基点，默认以中心点旋转；rotate只能有一个旋转度数，而rotateX和rotateY会从围绕中心点旋转变为绕着中心点所在的轴旋转；记住X表示绕X轴，Y表示绕着Y轴，一般中心点或轴在旋转过程中位置是不变的；可以先锁定一个点或一条线，确定他的原始位置和旋转过后的位置，两条线之间的夹角就是旋转度数
+	CSS3的2D变换只会改变外观，不会改变在标准文档流中的位置；
+2. 拉伸：skew(Xdeg)，取值度数 ----skew(skewX,skewY);
+	如果是skew只写了一个值，则默认这个值是skewX；skewX/skewY即只有Y/X轴拉伸，而X/Y轴长度与位置不变；当拉伸的角度之和为180度的时候，变形后形状是一致的，只是内容的方向是镜像的；
+3. 缩放：scale(X)，取值 正数、负数和小数----scale(scaleX,scaleY)
+	默认中心点都是center；scale(scaleX,scaleY)，如果只写一个值，宽高一起缩放；但是只要设置了不同的transiform-origin，则该点位置不变；
+4. 位移：translate()
+	translate(translateX,translateY)；如果只写一个值则相当于translateX()；两个值分别表示，距离左边界和距离上边界的值；transform-origin不起作用；
+5. 矩阵表示：matrix(a,b,c,d,e,f)，初始值为matrix(1,0,0,1,0,0)
+	IE兼容：filter: progid:DXImageTransform.Microsoft.Matrix( M11= 1, M12= 0, M21= 0 , M22=1,SizingMethod='auto expand');
+	IE下的矩阵没有e和f两个参数，因此无法实现位移的兼容 其中M11==a; M12==c; M21==b; M22==d
+		旋转：通过矩阵实现旋转
+				 a=Math.cos(deg/180*Math.PI); 
+				 b=Math.sin(deg/180*Math.PI);
+				 c=-Math.sin(deg/180*Math.PI);
+				 d=Math.cos(deg/180*Math.PI);
+		拉伸：通过矩阵实现倾斜
+				x轴倾斜: c=Math.tan(xDeg/180*Math.PI)
+				y轴倾斜: b=Math.tan(yDeg/180*Math.PI)
+				c代表的是skewX,b代表的是skewY;
+		缩放：通过矩阵实现缩放
+				x轴缩放 a=x*a    c=x*c     e=x*e;
+				y轴缩放 b=y*b   d=y*d     f=y*f;
+				实际上当矩阵只实现缩放时，只需要改a,d两个值即可，a代表的是x轴缩放；d代表的是y轴缩放比例；
+		位移：通过矩阵实现位移
+				x轴位移: e=e+x
+				y轴位移: f=f+y
+	如果两种以上同时叠加，就将相应的值按照实现效果的顺序相乘，先计算的为先实现的效果，后计算的为后实现的效果；
+DAY-2----2016.11.01
+3D：transform-style:preserve-3d;----创造一个3D空间，但只能给该盒子内部包含的盒子创造，不能自己给自己创造；
+		perspective----景深的通俗理解即站在多远的地方去看这个3D空间；
+		perspective-origin景深基点即站在什么角度去看这个空间，可以取方位值也可以给数值 ；
+DAY-3----2016.11.02
+动画：定义动画：@keyframes 动画名称{	动画状态	}----动画状态可以为from{}to{}，form对应0%，to对应100%，可以只有to；也可以为百分比，不写0%或100%都会默认回到初始状态
+		 调用：animation-name:动画名称;
+		 动画属性：animation-duration----动画持续时间
+		 				animation-timing-function----动画运动形式
+		 																linear	匀速
+																		ease		缓冲
+																		ease-in	由慢到快
+																		ease-out	由快到慢
+																		ease-in-out	由慢到快再到慢
+																		cubic-bezier(number, number, number, number)：	特定的贝塞尔曲线类型，4个数值需在[0, 1]区间内
+						animation-delay----动画延迟，只能是第一次动画时有效
+						animation-iteration-count----重复次数，当值为infinite时无限重复
+						animation-direction----播放前重置
+														alternate	动画直接从上一次停止的位置开始执行
+														normal	动画第二次直接跳到0%的状态开始执行（默认值）
+						animation-fill-mode----设置动画时间之外的状态
+														none 		不设置动画之外的状态（默认值）
+														forwards	动画结束时的状态（设置当动画结束后，保持100%时的状态）
+														backwards	动画开始时的状态（当原始状态与0%状态不同时，保持0%的状态）
+														both		动画结束或开始的状态
+						animation-play-state----动画运动状态
+														paused		暂停
+														running		运动（默认）
+

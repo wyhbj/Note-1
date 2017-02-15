@@ -1,0 +1,376 @@
+First Week
+DAY-1----2016.11.14----JS简介
+1. JavaScript
+		作用：页面交互，修改CSS样式；与服务器通信
+		组成：ECMAScript(5.1)---JavaScript核心标准，定义并实现了JavaScript基本语法，数据类型，类型转换，内置对象，方法的基本标准
+				DOM(文档对象模型)---操作页面的方法，根据ECMAScript扩展出来的操作页面的标准，提供创建、删除、修改、插入等操作页面的方法和标准，赋予操作页面的权利
+				BOM(浏览器对象模型)----浏览器的相关方法，提供浏览器相关的方法和标准，比如打开/关闭窗口，地址栏
+2. JavaScript代码（部分）
+		onclick---鼠标点击事件
+		alert("函数或方法执行")----调用浏览器默认弹窗，可以暂停代码运行
+		confirm('提示文字')----类似alert，多一个取消的选项，当点确定时返回true，点取消时返回false
+		prompt('提示文字')----类似alert，多出一个取消选项和一个输入框，点确定返回输入框内的内容，点取消返回false
+		console.log()----调用浏览器控制台，只能获取并操作行间的CSS样式，功能类似alert，但不暂停代码运行
+		onmouseover----鼠标移入事件
+		onmouseout----鼠标移出事件
+		onchange----表单内容发生改变后触发的事件
+3. JavaScript样式
+		行间JS：优点：直接；缺点：不符合W3C规则，不方便修改、维护、扩展、复用
+		内部JS：推荐写在文档最后、</body>标签之前；因为浏览器的解析是自上至下的，放在<head></head>中会因页面没有加载完成而无法获取到相应的元素，解决：在<scrpt></script>最开始添加声明window.onload = fuction(){}，将所有的JS写在其内部，作用是声明页面加载完成事件；语法：<script></script>；优点：方便同一页面元素的复用
+		外部JS：语法：<script src=""></script>；推荐写在文档最后、</body>标签之前；因为浏览器的解析是自上至下的，放在<head></head>中会因页面没有加载完成而无法获取到相应的元素；优点：可以被任意页面引用
+4. JavaScript注释
+		单行注释：//JS代码;或<!--JS代码;
+		多行注释：/*JS代码;
+								JS代码;*/
+5. JavaScript语法：document.元素.JS样式{document.元素.style.CSS样式='属性值';}，CSS属性值中除纯数字的以外其余均需添加''
+6. 变量：用var声明----变量初始化：var 变量名 = 变量数据;
+		 	 作用：简化代码，储存数据，方便复用一行数据
+		 	 命名规范：1)可以使用字母、数字、_、$，但第一个字符不允许时数字；2)不允许使用关键字和保留字（关键字与保留字见附录）；3)区分大小写；4)建议：语义化，eg：o--一个对象；a--一组元素；n--数字；str--字符串；arr--数组；fn--函数；使用小驼峰命名法：除首个单词外其他单词首字母大写
+7. 获取元素方式（JS选择器）
+		通过id获取元素：.getElementById('id名')----静态获取方法；只能在document下获取
+		通过class获取元素：.getElementsByClassName('class名')----动态获取方法；不仅可以在document下获取，也可以在某个限制范围的元素下获取；获取到的为一组元素的集合，也叫类数组，有下标方便操作，也有长度，当这组元素中只要一个元素时，也必须用下标去操作这个元素；
+		通过标签名获取元素：.getElementsByTagName('标签名')----动态获取方法；不仅可以在document下获取，也可以在某个限制范围的元素下获取；获取到的为一组元素的集合，也叫类数组，有下标方便操作，也有长度，当这组元素中只要一个元素时，也必须用下标去操作这个元素；
+				动态获取时，获取到的是一组元素的类数组，当元素没有被生成时，获取到的是一个空集合；当在获取元素时添加数字下标，会强制获取当前下标的元素，当没有元素获取到的是一个空集合时，添加数字下标获取就会因没有当前元素从而报错
+8. 函数---function 函数名(){}----作用：复用代码，声明一个函数，把要复用的代码放到函数里，在需要用的时候调用这个函数，里边的代码就会逐行执行
+		匿名函数 function (){}
+				声明：匿名函数不能直接声明，需直接写在事件后面，否则会报错；也可声明一个变量为一个函数：var 变量名 = function(){}
+				调用：通过函数声明时关联的事件来调用函数；通过函数声明的变量来调用函数：变量名()
+		有名函数 function 函数名(){}
+				声明：直接声明：function 函数名(){}
+				调用：直接调用：函数名(); ；事件调用：元素.事件 = 函数名; 注：此时函数名后不跟()，否则函数会直接调用，不会跟事件关联
+9. 属性操作
+		元素.style.CSS样式='属性值'----操作的是行间样式，可读可写
+		元素.属性名 = '属性值';
+		操作方式：通过.的方式操作，eg：console.log(变量名.style.width)，当样式名带-时，使用小驼峰命名法来写样式名，eg：console.log(变量名.style.backgroundColor); ；通过[]的方式操作，eg：console.log(变量名.style['background-color'])，当样式名以变量形式保存的时候必须用[]，eg: var h = height; box.style[h] = '400px';
+10. 常用属性
+		id
+		class -- 在JS文件中需写成className
+		style
+		innerHTML----标签对中间的所有内容，包括子标签，行间属性
+		innerText----标签中间的全部文字内容
+		style.cssText----控制所有的行内CSS样式
+DAY-2----2016.11.15
+1. 连接符
+		‘+’----如果两边都是数字，则进行加法运算；只要有一边是字符串，则进行字符串的拼接；如果两边有变量，则先将变量转换成存储的数据类型，在进行操作
+		‘==’----表示等于判断，在编程语言中，‘=’为赋值
+2. 布尔值（boolean）----只有两个值true或者false
+3. if条件判断
+		语法
+				if (判断条件){如果判断条件为true，则执行相应操作}
+				if (判断条件){如果判断条件为true，则执行相应操作}else{如果判断条件为false，则执行相应操作}
+				if (判断条件1){如果判断条件1为true，则执行相应操作}else if(判断条件2){如果判断条件2为true，则执行相应操作}else{如果判断条件1和判断条件2均为false，则执行相应操作}----当判断条件1与判断条件2都满足的时候，只执行判断条件1的操作
+			   		 也可以声明一个变量并赋给其一个布尔值true，将这个变量设置为判断条件并在操作结束后将这个变量赋布尔值false，使可以进入else的操作，并在else操作结束后重新赋true值，保证能够完成完整的if语句
+4. 数组：var arr = [];----储存多个数据，数据与数据之间用逗号分割，数组顺序从0开始
+		 	 数组第一位取值arr.[0]，数组最后一位取值arr.[arr.length-1]
+		 	 arr.push();--往数组的最后添加数据
+DAY-4----2016.11.17
+1. 获取元素方式（JS选择器）
+		通过id获取元素：.getElementById('id名')----动态获取方法；只能在document下获取
+		通过class获取元素：.getElementsByClassName('class名')----动态获取方法；不仅可以在document下获取，也可以在某个限制范围的元素下获取；获取到的为一组元素的集合，也叫类数组，有下标方便操作，也有长度，当这组元素中只要一个元素时，也必须用下标去操作这个元素
+		通过标签名获取元素：.getElementsByTagName('标签名')----动态获取方法；不仅可以在document下获取，也可以在某个限制范围的元素下获取；获取到的为一组元素的集合，也叫类数组，有下标方便操作，也有长度，当这组元素中只要一个元素时，也必须用下标去操作这个元素；
+		通过CSS选择器获取元素
+			.querySelector('选择器名')----静态获取方法；H5新标签，低版本不兼容；获取到的是一个元素，当有一组元素时，只能获取到元素里的第一个；不仅可以在document下获取，也可以在某个限制范围的元素下获取；选择器名写法与CSS样式表中相同，eg：当<ul id="list"><li></li></ul>时，获取li的方法为document.querySelector('#list li');
+			.querySelectorAll('选择器名')；可以获取到一组元素中的全部；使用下标取值；
+		静态获取方法：在获取元素之前添加元素，可以获取到该元素，获取元素之后添加元素，获取不到该元素
+		动态获取方法：无论在获取元素之前还是获取元素之后添加元素，都可以获取到该元素
+		动态获取时，获取到的是一组元素，当元素没有被生成时，获取到的是一个空集合；当在获取元素时添加数字下标，会强制获取当前下标的元素，当没有元素获取到的是一个空集合时，添加数字下标获取就会因没有当前元素从而报错
+2. for循环----for(初始化变量;判断条件;变量改变){当满足循环条件时，进入循环，执行的操作}
+				判断条件决定for是否执行，与执行次数；变量必须改变，否则会造成死循环
+				当要操作多个元素时，采用for循环
+3. 通过JS在HTML文件中生成大量代码：先声明一个变量，将生成的代码存放到该变量中，再将变量的值赋给想要添加代码的父集元素
+										 eg: var str = '';
+														for(var i=0;i<1000;i++){
+															 str += '<div></div>';
+														}
+														body.innerHTML = str;
+4. 取余（取模）----%：当a<b时，a%b=a；当a=n*b（n为正整数）时，a%b=0；当a>b时，a%b=a/b的余数                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+							数字'0'可以转换为布尔值false，其余数字可以转换为布尔值true
+DAY-5----2016.11.18
+1. for循环中的循环条件变量：变量声明最好写在for循环的条件内部，否则会因为参数作用域问题影响循环进行；for循环中添加点击事件，此时for循环中i的值是不满足循环条件的第一个值；for循环嵌套时，循环条件变量不能相同
+2. this----关键字，指向性代码，指向调用this的对象
+					函数内部调用：事件调用----指向调用事件函数的元素本身，eg：当在点击事件中alert(this);则this指向调用事件的元素
+											  函数调用----指向window
+					函数外部调用：指向window
+Second Week
+DAY-1----2016.11.21
+1. 自定义属性：在非空对象下，可以添加自定义属性；作用：存储数据
+2. 索引值：自定义属性的一种
+DAY-2----2016.11.22
+1. 数据类型
+		简单（基本）数据类型
+				字符串(String)--由n个字符组成，可以用单引号，也可以用双引号，但引号必须成对出现，eg：var str = 'Lawrence';，注：字符串也计算空格，查询字符串字符.charAt();
+				数字(Number)--整数或是小数，eg：var num = 1;
+				布尔值(boolean)--true or false，
+				空(Null)--只有一个值：null，当声明的一个变量数据类型未知时，可以声明为空，当事件未绑定函数时，数据类型为null，eg：var a = null;
+				未定义(Undefined)--当声明的变量没有赋值时，默认值为undefined
+		复杂（复合）数据类型--可以由简单数据类型或复合数据类型组成
+				对象(Object)--常见的有数组、键值对---eg: var j = {attr1: value1, attr2:value2}; console.log(j.attr1);--两个单独的对象永远不相等，eg:var a = []; var b = [];  a===b是false
+						有顺序无意义用数组，有意义无顺序用键值对，数组有长度，键值对没有长度
+						键值对遍历--for(var attr in j) {console.log(j[attr])}
+				typeof 数据--检测当前值的数据类型，返回值的首字母是小写的；没有数据类型空，null返回的是object
+2. 数据类型转换----JS支持将任意数据类型转换成字符串、数字和布尔值
+			 方法--String(要转换的数据);；Number(要转换的数据);--如果能转化成数字就转成数字，如果不能则转成NaN(not a number)，NaN数据类型为数字；Boolean(要转换的数据);
+						Number(字符串);---纯数字的字符串会转化成数字；当字符串以0开头时，会忽略掉开头的0；当前后有空格时，忽略空格；空字符串转化成0；字符串不是纯数字，包含其他字符，转成NaN；
+						Number(布尔值);----true => 1；false => 0
+						Number(undefined);----NaN
+						Number(null);----转化成0
+						Number(object);----空数组转成0；非空数组转成NaN；键值对转成NaN
+						字符串转数字专门方法：parseInt/parseFloat(字符串);--纯数字的字符串会转化成数字；当字符串以0开头时，会忽略掉开头的0；当前后有空格时，忽略空格；空字符串转成NaN；字符串不是纯数字，包含其他字符，则只转换到数字结束的位置，忽略掉从第一个非数字起的后面部分；parseInt只能转化成整数，不识别小数，parseFloat可以识别小数
+						转化为字符串的简易方法：空字符串+要转化的数据
+						转化为布尔值--数字0、空字符串、NaN、undefined、null转化成布尔值false，其余的转化成true；
+						转换成布尔值简易方法：!!数据=>true
+DAY-3----2016.11.23
+1. NaN与任何数据都不相等，也不等于自身
+2. isNaN();----先调用Number();再判断转换成的是不是NaN，如果是NaN则返回true，如果不是NaN则返回false
+3. 显式类型转化----明确调用某种方法将一种数据类型转换成另一种数据类型
+	 隐式类型转换----没有明确调用数据类型转换方法，为了系统运算或拼接，系统将数据类型转化了
+4. 运算符
+		算术运算符(+,-,*,/,++,--,%)----n++和++n的相同点都是给n+1，不同点是n++是先进行赋值再+1，而++n则是先+1再进行赋值
+		赋值运算符(=,+=,-=,*=,/=,%=)
+		逻辑运算符(||,&&,!)----||--当两边有一个成立则返回true/当前面为真则返回前面，当前面为假则返回后面；&&--当两边有一个不成立则返回false/当前面为真则返回后面，当前面为假则返回前面
+		关系运算符(>,<,>=,<=,==,!=,===,!==)----==仅判断两边值是否相同，===先判断两边数据类型，再判断两边的值，都相同才是相同
+			 具体运算符优先级见附录
+5. 三目：a?b:c--三元运算符，a为判断条件，b为判断为true的执行操作，c为判断为false的实行操作
+6. while循环----eg：var count = 0;while (count < 10) {console.log(count);count++;}
+7. switch判断----eg：switch(n) {case 1: // Start here if n == 1
+																	// 执行代码块 #1.
+															break;// Stop here
+															case 2: // Start here if n == 2
+																	// 执行代码块 #2.
+															break; // Stop here
+															case 3: // Start here if n == 3
+																	// 执行代码块 #3.
+															break; // Stop here
+															default: // If all else fails...
+																	// 执行代码块 #4.
+															break; // stop here}
+8. break----跳出循环，break后的代码均不执行
+		 continue----跳过本次循环，可以继续后面的循环
+DAY-4----2016.11.24
+1. for in----用于键值对和数组的循环，遍历，迭代--for( var 控制变量名 in 数组或键值对名){}
+2. 函数----用于复用代码，可以函数嵌套函数声明
+				函数声明式：function 函数名 (形参) {函数执行内容}; 函数名(实参);--函数的声明和调用的顺序可以调换
+				函数表达式：var fn = function() {}--必须先声明，后调用
+				函数的参数：可以给函数里传入数据，让函数的执行和返回更灵活，增强函数的可用性和扩展性
+						形参：函数声明时定义形参，只能在函数内部使用，相当于函数内部使用的变量，在函数调用时传入实参，给形参一一对应赋值
+						实参：在函数调用时传入，一一对应赋值给形参，当没有赋值时是undefined
+				arguments--参数集合，在不定参时使用，只能在函数内部使用，在传入实参时，赋值给形参，并将数据存入arguments
+				return--函数返回值，默认值时undefined，可以返回任意数据类型--作用：函数执行完返回指定数据，终止函数的执行
+Third Week
+DAY-1----2016.11.28
+1. 作用域----变量和函数起作用，可访问的区域
+				全局作用域----没在函数里声明的变量和函数，全局可用
+				函数(局部)作用域----在函数内部声明的变量或函数，只能在该函数里(包含子函数里)访问，函数外不能直接访问
+2. 作用域链----变量和函数的查找规则--先查找函数内部；如果函数内部没有则找形参；如果形参没有则找上一级函数内部；一直向上查找直到查找全局
+3. window----js内置对象
+				用var去声明全局变量或函数，会在window中创建一个属性，名为变量/函数名，值为变量/函数值；
+				首次给未定义变量赋值，会在window中创建全局变量，但是不推荐，容易造成全局污染；
+4. delete----操作符，删除对象下属性；能删除的值返回true，不能删除的值返回false；用var声明的变量不能用delete删除
+5. 预解析----js代码在执行之前，会先把var声明的变量和函数提到当前与的最前面，然后再逐行执行，解析顺序为先解析var，再解析函数，然后再按照赋值顺序进行赋值--函数内部>形参>全局
+DAY-2----2016.11.29
+1. 闭包----函数嵌套声明--防止全局污染
+2. 自执行函数----标准--(function(形参){})(实参)，也可以写成~function(形参){}(实参)
+3. getComputedStyle(元素名)----得到页面中某个元素最终显示的全部样式，对象--用于标准浏览器
+		getComputedStyle(元素名).样式名----得到页面中某个元素的最终显示的某个样式，带单位的字符串
+		获取某些样式时会出问题，获取复合样式时会返回全部的值
+		对于非标准浏览器(IE浏览器)，使用--元素.currentStyle
+DAY-4----2016.12.01---The last month of 2016, you need more hard-working, Lawrence
+1. 定时器
+		重复执行定时器--setInterval(函数,时间间隔);--函数为有名函数时不加()；时间间隔单位为毫秒，且在定义时不需要添加单位，最小时间间隔与浏览器与计算机性能相关，一般最小时间间隔设置要在12ms左右
+				清除重复定时器--clearInterval(重复定时器);
+				当定时器被关闭后，无法重新打开，如再次实现该定时器效果，必须重新开启一个新的定时器
+		延时执行定时器--setTimeout(函数,延时);--函数为有名函数时不加()；时间间隔单位为毫秒，且在定义时不需要添加单位；只执行一次
+				清除延时定时器--clearTimeout(延时定时器);--也可以使用clearInterval进行清除，但是不推荐
+				将延时时间设置为0，也可以让定时器内的函数后执行，使用这种方法可以改变代码执行顺序
+		定时器返回值为数字类型，为定时器的编号(ID)，从1开始，每添加一个定时器，不论是重复还是延时，编号都会+1，定时器关闭不会改变编号
+		定时器里的this不能直接使用，如想实现this的功能，可以在定时器外面声明一个_this=this，在定时器中使用_this来代替this的功能；
+DAY-5----2016.12.02
+1. 运动----元素需要定位属性position:absolute;，用定时器实现；
+		运动函数详见课件中move.js、move2.js、move3.js和move4.js
+Fourth Week
+DAY-1----2016.12.05
+1. 时间对象(时间戳)----new Date();--获取到的是本地的时间，即电脑显示的时间；月份从0开始，12进制
+		设置时间对象--数字，用逗号分隔(年,月,日,时,分,秒)，eg: new Date(2016,12,8,10,0,0)；字符串，用空格分隔('月--Eng 日 年 时:分:秒')，eg: new Date(Dec 10 2016 10:00:00)；对象，直接传入一个时间对象
+		获取时间--年--getFullYear();  月--getMonth();  日--getDate();  周几--getDay();  时--getHours();  分--getMinutes();  秒--getSeconds();  毫秒--getMilliseconds();  距离1970.01.01 00:00:00的毫秒时间差--getTime();
+		设置时间--年--setFullYear();  月--setMonth();  日--setDate();  时--setHours();  分--setMinutes();  秒--setSeconds();
+		获取本月天数--月设置为下个月；日设置为0；当当前月为一月时会有问题出现
+2. 赋值与赋址----当一个对象赋给一个变量时，此时赋给变量的是这个对象的地址，因此变量中值的改变会影响到对象中的值，对象中的值的改变不会影响到变量中的值；eg：var j = {a : 1, b : 2}; var j1 = j; j1.a = 3;此时j与j1中的值都为3
+Fifth Week
+DAY-1&2----2016.12.12&13
+字符串方法
+		string.length----字符串的长度，只能读不能写；
+		string.charAt(i)----字符串第i位的字符，也可写作string[i]，只能读不能写，当没有第i位时返回空字符串；
+		string.charCodeAt(i)----返回字符串第i位的unicode码，a-z对应的unicode码为97-122， A-Z对应的unicode码为65-90，0-9对应的unicode码为48-57，返回的是数字类型；
+		String.fromCodeAt(unicode)----将unicode码转成对应的字符，返回值是字符串类型，这里的String不能用变量代替且S必须大写
+		string.indexOf('searchValue',index)----字符串中的指定字符从左往右查找第一次出现的位置，当没找到指定字符时，返回-1，返回数字类型，index设置查找的起始位置，不写时默认从第0位开始；
+		string.lastIndexOf('searchValue',index)----字符串中的指定字符从右往左查找第一次出现的位置，当没找到指定字符时，返回-1，返回数字类型，index设置查找的起始位置，不写时默认从最后一位开始；
+		string.split(separate,length)----将字符串用指定分隔符分隔，放到数组中，返回数组，当没有参数时，将整个字符串放到数组中返回；当分隔符(separate)是空字符串时，字符串每个字符都是一个字符串放到数组中返回；当分隔符为字符串中不为首/尾的字符时，以该字符做分隔，且该字符消失；当分隔符为字符串中的首/尾字符时，返回的是空字符串+剩余部分的字符串；length为可选参数，表示分隔后保留的数组的长度
+		string.toLowerCase()----不改变原字符串，返回值是将原字符串中的大写字母全部改成小写字母的字符串；
+		string.toUpperCase()----不改变原字符串，返回值是将原字符串中的小写字母全部改成大写字母的字符串；
+		string.slice(begin,end)----截取字符串中某一段字符片段；参数begin是截取的起始位置，end是截取的结束位置，当不写end时默认是截取到字符串结束位置；当不传参数时，返回整个字符串；当end有值时，截取部分不包括end的字符；当end值小于begin值时，返回空字符串；当begin为-n，且end为默认值时，截取的是从右往左的n个字符；
+		string.substring(begin,end)----截取字符串中某一段字符片段；参数begin是截取的起始位置，end是截取的结束位置，当不写end时默认是字符串结束位置；当不传参数时，返回整个字符串；当end有值时，截取部分不包括end的字符；当end值小于begin值时，会将end值与begin值颠倒，然后返回对应区域的字符串；当begin为负值时，截取全部字符串；截取不到时返回空字符串；当不传参数时，返回整个字符串；
+		string.substr(begin,length)----截取字符串中某一段字符片段；参数begin是截取的起始位置，length是截取的长度，当不写end时默认是字符串结束位置；当begin为-n，且length为默认值时，截取的是从右往左的n个字符；
+		string.trim()----去除字符串前后的空格；
+		string.concat(str1,str2...)----拼接字符串，不改变原字符串，返回的是拼接完的字符串；
+        以上字符串方法均不改变原字符串；
+DAY-4----2016.12.15
+数学方法--调用Math方法时，内部会先调用Number()方法
+		Math.ceil()----向上取整；Math.floor()----向下取整；Math.abs()----取绝对值；Math.round()----四舍五入取整；Math.random()----取随机数[0,1)；Math.PI----π，是一个值；Math.max(n1,n2,n3...)----返回括号中最大值；Math.min(n1,n2,n3...)----返回括号中最小值；Math.sqrt()----开平方；Math.pow(n1,n2)----返回n1的n2次方；
+添加、删除类名---.classList.add()/.classList.remove()--新方法，兼容性上会有问题
+DAY-5----2016.12.16
+数组方法
+		array.join(connector)----将数组用指定的连接符连接成字符串，返回字符串，当没有参数时，默认连接符为逗号','；当连接符(connector)为空字符串时，返回的是数组里的全部内容，不含连接符；
+		array.length----数组长度，可读可写；注：不要用length操作数组数据；
+		new Array()----创建数组的另一种方法，当只传入一个数字参数时，设置的是数组的长度；
+		array.push(val1,val2....)----向数组尾部添加数据，返回的是添加完数据后数组的长度；
+		array.pop()----删除数组尾部的数据，返回的是被删除的数据，返回值类型由被删除的值得数据类型决定；
+		array.unshift(val1,val2....)----向数组的首部添加数据，返回的是添加完数据后数组的长度；
+		array.shift()----删除数组首部的数据，返回的是被删除的数据，返回值类型由被删除的值得数据类型决定；
+		array.reverse()----翻转数组中数据的顺序，返回的是翻转过后的数组；
+		array.concat(val1,val2....)----将原数组与新数组进行拼接，不会改变原数组，返回的是拼接后的数组；
+		array.sort()----根据规则给数组排序；当不传参数的时候，按照ASCII码大小排序，参数可以为一个函数，函数必须要写形参和返回值；会改变原数组；
+				字符串大小比较会逐位比较大小，如果第一位能出结果，则返回这个结果，如果不能，则比较下一位，直到比较出结果；
+				function(a,b){
+                    return a-b--从小到大排列   
+                    return b-a--从大到小排列
+                    return Math.random()-0.5--随机排列
+                }
+		array.forEach(function (a,b,c) {})----遍历数组，参数a为数组里的每个值，b为当前值对应的数字下标，c为整个数组；
+		array.every(function (a,b,c) {})----遍历数组，如果每个值都满足return的条件，则返回true，否则返回false，参数a为数组里的每个值，b为当前值对应的数字下标，c为整个数组；函数必须要写形参和返回值；
+		array.filter(function (a,b,c) {})----遍历数组，将满足return条件的值放到数组中返回出来，不改变原数组，参数a为数组里的每个值，b为当前值对应的数字下标，c为整个数组；函数必须要写形参和返回值；
+		array.map(function (a,b,c) {})---遍历数组，判断return的条件，将判断出的boolean结果放到新数组中返回，参数a为数组里的每个值，b为当前值对应的数字下标，c为整个数组；函数必须要写形参和返回值；
+		array.some(function (a,b,c) {})----遍历数组，只要数组中有一个值满足return的条件，则返回true，否则返回false，参数a为数组里的每个值，b为当前值对应的数字下标，c为整个数组；函数必须要写形参和返回值；
+		array.slice(begin,end)----截取数组中指定位置的数据放到新数组里返回，原数组不变；参数begin是截取的起始位置，end是截取的结束位置，当不写end时默认是截取到数组结束位置；当不传参数时，返回整个字符串；当end有值时，截取部分不包括end的字符；当begin为-n，且end为默认值时，截取的是从右往左的n个字符；当截取不到时，返回空数组；
+		array.splice(begin,length,val1,val2....)----删除、添加、替换；参数begin是起始位置，length为长度，val1,val2....为要添加/替换的内容；会改变原数组；删除时需写参数begin与length；添加时需写参数begin、length（必须为0）、val1,val2...；替换时需写参数begin、length、val1,val2...；
+		不会改变原数组的方法：array.concat()；array.forEach()；array.every()；array.filter()；array.map()；array.slice()；
+Sixth Week
+DAY-1&2----2016.12.19&20
+算法
+		冒泡排序--循环比较两个数的大小，大的上浮，小的下沉
+        冒泡排序算法见笔记
+		递归--常出现在循环次数未知时--指的是函数自己调用自己--有条件的调用：在函数内部调用自己前增加一个前提条件，当满足条件时才可以调用；有条件的结束：函数内部设定一个判断条件，当满足判断条件时，跳出函数
+        快速排序--设定一个参考值，将其余值与参考值进行比较，将待比较数组拆分成[小于参考值],[参考值],[大于参考值]，逐次进行比较拆分，将待比较数组拆分成从小到大排列的n个数组，然后将这n个数组拼接起来，得到比较完的数组
+        注：使用JS原生方法要比封装函数的方法执行速度更快
+JSON--一种轻量级数据交换格式--JavaScript Object Notation--数据类型是字符串
+		不支持undefined，内部字符串必须使用""，属性名必须用""包裹
+		eg:j = '{"name":"Lawrence","age":23}'
+		JSON.parse()--把JSON字符串转化为对象，这里的JSON为JSON对象；
+		JSON.stringify()--将对象转化为JSON字符串，这里的JSON为JSON对象；当对象中存在undefined时，该属性被跳过
+DAY-4----2016.12.22
+DOM---获取节点
+		文档(document)的本质是字符串，页面在解析时，调用JS解析器，把标签解析成对象，对象下的方法有许多操作方法，方便操作页面上元素;
+		核心对象为document，在window对象下面；
+		JS在解析document时，会解析成DOM树(对象)，DOM树由DOM节点组成，操作的页面操作就是对节点的操作
+				节点：类型共有12种，不同的节点类型操作的方法也不一样，eg:标签为元素节点，文字为文本节点，注释为注释节点；
+				节点类型：ELEMENT-NODE  1;  ATTRIBUTE-NODE  2;  TEXT-NODE  3;  DATA_SECTION_NODE  4;  ENTITY_REFERENCE_NODE  5;  ENTITY_NODE  6;  PROCESSING_INSTRUCTION_NODE  7;   COMMENT-NODE(注释节点)  8;  DOCUMENT-NODE  9; DOCUMENT-TYPE-NODE  10;  DOCUMENT_FRAGMENT_NODE 	11;  NOTATION_NODE 	12;
+				常用节点类型为元素节点(1)，属性节点(2)，文本节点(3)，注释节点(8)，document节点(9)
+					node.nodeType--查看节点类型，返回的是该节点类型对应的数字；
+					node.nodeName--查看节点名称，字符串类型，元素节点返回的是大写的标签名(字符串类型)，属性节点返回的小写的属性名(字符串类型)，文本节点返回#text(字符串类型)，注释节点返回#comment(字符串类型)，document节点返回#document(字符串类型)；
+					ENode.attributes--获取到某个元素节点的属性集合；
+					ENode.childNodes--标准浏览器下获取到某个元素节点下的全部第一级子节点，回车为文本节点，在非标准浏览器(IE)下获取到某个元素节点下的全部第一级元素子节点；
+					ENode.children--获取到某个元素节点下的全部第一级元素子节点，非标准方法，经常使用；
+					ENode.parentNode--获取到某个元素节点的上一级父节点，只能找到最近的父节点；
+					ENode.previousElementSibling--获取到某个元素节点的上一个同级节点；
+					ENode.nextElementSibling--获取到某个元素节点的下一个同级节点；
+					ENode.firstElementChild--获取到某个元素节点下的第一个元素子节点；
+					ENode.lastElementChild--获取到某个元素节点下的最后一个元素子节点；
+Seventh Week
+DAY-1----2016.12.26
+DOM---元素节点属性
+		Enode.offsetParent--找到某个元素节点的定位父节点(最近的定位属性不为static的父级节点)；当没有定位父节点时会找到body，body的定位父节点为null；
+		Enode.offsetLeft--获取某个元素的左边框外到其定位父节点左边框内的距离，没有单位，只读，不能写；当没有定位父节点，自身也不是定位元素，获取到的是距离html文档的距离
+			在Firefox下定位父节点有border和overflow，offsetLeft会重新计算；解决：不让border和overflow在定位父节点上同时存在
+		Enode.offsetTop--获取某个元素的上边框外到其定位父节点上边框内的距离，没有单位，只读，不能写；
+		Enode.clientWidth/clientHeight---获取某个元素节点的宽高+padding的值，不带单位；内联元素获取到的值为0  ；
+		Enode.offsetWidth/offsetHeight--获取某个元素节点的宽高+padding+border的值，不带单位；
+		Enode.getBoundingClientRect--得到的是一个对象，内容是left、top、bottom、right、width、height，不带单位；top为上边框外到可视区上边距离，bottom为下边框外到可视区上边的位置，left为左边框外到可视区左边的距离，right为右边框外到可视区左边的距离，width与height为自身width/height+padding+border
+		Enode.getAttribute('属性名')--获取写在行间的原生属性或自定义属性，获取不到使用JS添加的自定义属性
+		Enode.setAttribute('属性名','属性值')--设置写在行间的原生属性或自定义属性
+		Enode.removeAttribute('属性名')--删除写在行间的原生属性或自定义属性
+DAY-2----2016.12.27
+DOM---生成、添加、删除、替换、克隆节点
+		document.createElement()--只能从document下创建元素；只是创建了元素，可以去操作，但是并没有写入页面；
+		Enode.appendChild(插入的节点)--在父节点的最后插入新的节点；页面中已有元素节点被插入则相当于是剪切；插入的是对象(节点)；
+		Enode.insetBefore(插入的节点，被插入的节点)--在父节点的某个节点的前面插入新的节点；页面中已有元素节点被插入则相当于是剪切；被插入的节点必须属于父节点；
+		Enode.removeChild(要删除的节点)--删除父节点下的要删除的节点；
+		Enode.replaceChild(要替换的节点，要被替换的节点)--在父节点下，用一个新的节点替换原有的某个节点；被替换的节点必须属于父节点；如果要替换节点为已有节点，则相当于是剪切；
+		Enode.cloneNode(boolean)--克隆节点；不传参数默认是false；当参数为true时，会克隆自身以及全部子节点的html、全部行间css和全部行间属性，无法克隆事件与JS添加的自定义属性，属于深度克隆；当参数为false时，只能克隆本身及行间样式与属性，不能克隆子节点；
+DAY-3----2016.12.28
+DOM---表格、表单操作方法
+		table.tHead--找到表格中的头部；table.tHead.rows[0]--头部的第一行；table.tHead.cells[0]--头部的第一列；rows和cells也可以用于tbody和tfoot；
+		table.tBodies--找到表格中的表格主体；以数字下标形式找到各个tbody；
+		table.tFoot--找到表格中的尾部；
+		form.name--通过表单的name属性找到对应的表单元素，使用name属性获取表单元素方法的父节点必须为form
+Eighth Week
+DAY-1----2017.01.03----Happy New Year!!!
+BOM
+		核心对象为window；
+		window.open(URL,name,specs[新窗口有效],boolean);----打开新窗口，返回值为新打开窗口的window对象；注：写在全局，新窗口可能会被拦截(chrome,Firefox)；不写参数，默认在新窗口打开空白页(about:blank)；参数数据类型为字符串；参数URL为跳转地址，必须写全，不写http://会默认为本地地址；参数name为打开方式与框架名(name属性)，_blank为新窗口下打开，_self为在自身页面打开，_top为最外层框架，_parent为父级框架，参数specs为规格，只有在新窗口打开有效，规定了打开的新窗口的属性，'属性名=属性值,属性名=属性值'；
+		window.close();----关闭窗口；默认为关闭当前窗口；在Firefox下，close只能关闭使用open打开的窗口；
+		window.navigator;----浏览器信息对象；navigator.userAgent可以查看浏览器的信息
+		window.location;----地址栏信息对象，可读可写；location.href获取到的是当前页面的绝对地址；search获取到的是页面的查询信息，[?,#),，eg:'www.baidu.com?s=hhh#page=1'获取到的查询信息为?s=hhh，字符串类型；hash获取到的是页面的锚信息，(#,+∞)，eg:'www.baidu.com?s=hhh#page=1'获取到的锚信息为page=1，不同的hash用&分隔，window.onhashchange()--当hash改变时执行；注：除hash以外的设置操作都会刷新页面；href，search设置不能放在全局，否则会无限刷新页面；
+DAY-2----2017.01.04
+BOM
+		window.innerWidth/innerHeight----标准的获取可视区宽高的方法；移动端多用window.innerWidth/innerHeight，PC端多用Enode.clientWidth/clientHeight；
+		window.onresize----当窗口尺寸改变时触发事件；
+		window.onscroll----当滚动条发生运动时触发事件；
+		window.pageXOffset/pageYOffset---获取滚动条移动位置的标准方法；chrome下也可以使用document.body.scrollTop来获取滚动条移动位置，其他浏览器使用document.documentElement.scrollTop来获取滚动条移动位置，这种方法在chrome可以获取到数据0，且不会改变；
+		window.scrollTo(x,y)----设置x轴/y轴的滚动条移动位置；
+		window.scrollHeight----如果自身内容没有超出父级范围，则值为父级的clientHeight；如果自身内容超出了父级范围，则值为父级clientHeight+超出部分的高度
+DAY-4----2017.01.06
+事件
+		鼠标事件
+				onclick--鼠标单击事件；某些可交互的元素回车也会触发单击事件；
+				onmousedown--鼠标按下事件；onmouseup--鼠标抬起事件；
+				onmouseover--鼠标移入事件；onmouseout--鼠标移出事件；从元素外移入会触发onmouseover，从元素内移入子元素内，会先触发onmouseout，再触发onmouseover；
+				onmouseenter--鼠标移入事件；onmouseleave--鼠标移出事件；从元素内移入子元素内，不会触发onmouseleave，只有完全移出元素时，才会触发onmouseleave；
+				onmousemove--鼠标移动事件；
+				onmousewheel--鼠标滑轮滚动事件；Firefox下没有该事件；在Firefox下用Enode.addEventtListener('DOMMouseScroll',function () {})来调用鼠标滑轮滚动事件
+				ondblclick--鼠标双击事件；触发双击事件时同时会触发两次单击事件，解决：给单击事件添加延时定时器；
+		键盘事件--只有可输入的元素才有键盘事件；
+				onkeydown--键盘按下事件；常用在表单元素和document下；按下不抬起会连续触发；所有按键都触发该事件；onkeyup--键盘抬起事件；所有按键都触发该事件；
+				onkeypress--键盘按下事件；触发顺序onkeydown=>onkeypress=>onkeyup；按下不抬起会连续触发；功能键不触发该事件；
+		焦点事件--只有可交互元素有焦点事件；页面中只能有一个焦点，最初焦点默认为document；设置焦点方法--点击；用tab键切换；调用js方法--focus();blur();
+				onfocus--聚焦事件；onblur--失焦事件；
+		表单事件----表单方法--submit()--不会触发onsubmit事件；reset()--会触发onreset事件；select()；
+				onsubmit--提交事件；当点击submit时触发事件，这里的submit为input的type；
+				onreset--重置事件；当点击reset时触发事件，这里的reset为input的type；
+				onchange--内容改变事件；当失焦时，如果内容发生改变则触发事件；
+				oninput--内容改变事件；内容键入时，当被输入的内容发生改变时调用；
+DAY-5----2017.01.07
+事件对象event--记录事件触发时的详细信息，只有事件调用函数里才能使用这个对象；不同的事件，事件对象记录的信息不同；在Firefox下event被认为是变量而不是对象；事件调用函数的第一个形参就是事件对象；在chrome与Firefox下可以拿到，在IE低版本中为undefined；
+鼠标事件对象
+		altKey/shiftKey/ctrlKey--当按下alt/shift/ctrl时，触发事件，其对应的对象值为true；
+		clientX/clientY--鼠标事件触发时的位置距离可视区左边或上边的距离
+		pageX/pageY--鼠标事件触发时的位置距离页面左边或上边的距离
+		which--键值，代表的是按下的是鼠标的哪个键，左键为1，滑轮为2，右键为3；在chrome下无法触发右键点击；
+Ninth Week
+DAY-1----2017.01.09
+键盘事件对象
+		altKey/shiftKey/ctrlKey--当按下alt/shift/ctrl时，触发事件，其对应的对象值为true；
+		keyCode--键值，判断按下的是键盘上的哪个键；只判断键，不区分大小写；键盘事件独有；常用键值：(a,z)==(65,90)；enter==13；space==32；direction left ==37；direction up ==38；direction right ==39；direction down ==40；
+		which--键值，所有的输入设备都有；
+事件源--触发该事件的源头；event.target；
+事件委托--给父级绑定事件，父级内包裹的全部的子集都可以触发这个事件；
+DAY-2----2017.01.10
+事件绑定----将函数和元素的某个时间关联，当事件触发的时候，执行绑定的函数；
+		通过on绑定的函数同一事件只能绑定一个函数；绑定多个函数会覆盖掉前面的函数；默认在冒泡阶段执行；
+		事件监听--Enode.addEventListener('事件名',function,boolean)--作用：绑定事件；参数'事件名'数据类型为字符串，事件名不加on；参数boolean判断function是否在捕获阶段调用，当值为true在捕获阶段调用，为false时不在捕获阶段调用(在冒泡阶段调用)，当不传参数时，默认为false；因匿名函数各不相同，所以同一事件可以绑定多个匿名函数，而有名函数在同一事件下绑定则会覆盖；移动端只用这种方法绑定事件，用on绑定会有问题；
+				事件流(事件模型)--事件触发时执行的流程；事件执行分为两个阶段--捕获阶段，冒泡阶段；
+					捕获阶段--从window一直向下找到目标元素的过程；
+					冒泡阶段--从目标元素一直向上找到window的过程；
+					阻止冒泡--ev.cancelBubble--当值为true时，阻止全部的冒泡阶段的事件执行，只执行目标元素的事件；当值为false时，不阻止冒泡阶段事件的执行；默认值为false；
+					阻止进程--ev.stopPropagation()--阻止后续进程的执行；
+		解绑事件--Enode.removeEventtListener('事件名',function,boolean)--解绑必须是相同事件的相同函数且在相同阶段调用；匿名函数无法被解绑；无法解绑用on绑定的事件的函数；
+阻止默认行为--先找到触发默认行为的事件和对象，然后阻止；阻止方法：1)在事件末尾添加return false，只能用于用on绑定的事件函数；2)ev.preventDefault()，on和addEventListener都可以使用；
+右键菜单--oncontextmenu--当调用上下文菜单(右键菜单)时触发事件；
+Tenth Week
+DAY-1----2017.01.16
+鼠标滑轮事件对象--IE/chrome下用onmousewhell绑定鼠标滑轮事件，Firefox下用Enode.addEventtListener('DOMMouseScroll',function () {})绑定事件
+		IE/chrome下ev.whellDelta--当向上滚时为120，向下滚时为-120；Firefox下ev.detail--向上滚为-3，向下滚为3；
+Twelfth Week
+DAY-3----2017.02.15
+git 与 github
+	git：版本控制工具
+		版本控制工具有两种：svn--集成式--需要一台中央服务器中，所有的版本控制都需要借助这台服务器，如果没有网络则无法进行版本控制，共享范围较小，一般仅限在一个公司的范围；git--分布式--将每台计算机都作为一台服务器，版本控制不需要借助网络就能够形成版本；
+	gitHub：网站，社交平台，开源项目，远程仓库
