@@ -370,7 +370,44 @@ DAY-1----2017.01.16
 		IE/chrome下ev.whellDelta--当向上滚时为120，向下滚时为-120；Firefox下ev.detail--向上滚为-3，向下滚为3；
 Twelfth Week
 DAY-3----2017.02.15
-git 与 github
-	git：版本控制工具
+Git 与 Github
+	Git：版本控制工具
 		版本控制工具有两种：svn--集成式--需要一台中央服务器中，所有的版本控制都需要借助这台服务器，如果没有网络则无法进行版本控制，共享范围较小，一般仅限在一个公司的范围；git--分布式--将每台计算机都作为一台服务器，版本控制不需要借助网络就能够形成版本；
-	gitHub：网站，社交平台，开源项目，远程仓库
+	GitHub：网站，社交平台，开源项目，远程仓库
+Git指令
+	从GitHub上下载文件：git clone <文件地址>；
+	查看状态：git status；
+	查看版本号：git log；
+	将文件从工作区存放入暂存区：git add <file>（单个文件）/.（批量操作文件）；
+	将文件从暂存区存放入版本区：git commit -m "注释"；只有到了版本去才有版本控制
+	将文件直接从工作区存放入版本区：git commit -a - m "注释"；
+	查看工作区与暂存区的差别：git diff；被添加的内容为绿色，被删除的内容为红色
+	查看暂存区与版本区的差别：git diff --cached；
+	查看工作区与版本区的差别：git diff master；
+	将文件从暂存区撤销到工作区：git reset HEAD <file>；
+	将工作区的代码进行撤销(优先暂存区，如果暂存区没有差别则进行版本区)：git checkout -- <file>；
+	如果修改多个文件之后，在提交版本库时有文件遗漏了，则可以通过1）把遗漏的文件存放到暂存区；2）git commit -m "注释" --amend；此时，最近一次的版本会与这次的版本合并成一个新版本，并删除最近的版本
+DAY-4----2017.02.16
+Git指令
+	将工作区中手动删除的文件在暂存区也删除：git rm <file>；
+	一次性删除工作区与暂存区的某个文件：git rm -f <file>；
+	只删除暂存区，不删除工作区的文件：git rm --cached <file>；
+	删除整个文件夹：git rm -rf <folder>；
+	恢复单个文件(不能在暂存区内删除)：git checkout <file>；
+	恢复历史版本：git reset --hard <版本号>；
+	查看历史操作：git reflog；
+	以当前版本为基础回滚一个版本：git reset --hard HEAD^；
+	以当前版本为基础回滚n个版本：git reset --hard HEAD~n；
+	查看远程仓库名称：git remote；
+	查看远程仓库对应的GitHub地址：git remote -v；
+	将版本库中内容上传到远程仓库：git push origin master；
+	分支--使用场景：1）开发不稳定版本；2）开发生命周期较短的项目；3）多人协作开发；
+		查看分支：git branch；
+		新建分支：git branch <分支名>；
+		切换分支：git checkout <分支名>；
+		新建并切换分支：git checkout -b <分支名>；
+		删除分支：git branch -d <分支名>；只能删除被合并后的分支；
+		强制删除分支：git branch -D <分支名>；可以删除没有被合并的分支；
+		合并分支：git merge <分支名>；将当前分支与待合并的分支进行合并；
+		查看已经合并的分支：git branch --merged；
+		查看还未合并的分支：git branch --no-merged；
