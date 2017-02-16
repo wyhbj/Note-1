@@ -415,4 +415,4 @@ Git指令
 	协作开发时遇到冲突的问题---提交远程仓库被拒绝的解决方法：1）从远程仓库中拉取代码--git fetch；2）对比差异部分--git diff master origin/master；3）合并两边的代码，人为解决问题--git merge origin/master；4）人为判断并解决问题---在冲突部分删除不需要的代码；5）重新提交到远程仓库；
 	当没有开发权限但也想参与别人项目时：1）fork别人的项目（这样就能将别人的项目添加到自己的GitHub中）；2）clone参与的项目并进行修改、提交；3）发送合并请求（点击导航栏中的Pull requests，然后点击create pull request，留言后再次点击create pull request，然后等待对方的确认）；
 	当收到别人更改项目的通知时：1）点击opened pull request（当被发送请求时会有链接）；2）点击files changed去查看被修改的内容；3）当希望合并他人的修改时，可以点击merge pull request，然后点击confirm merge进行代码合并，此时自己的项目中就会有他人的更改；
-	如果想避免每次都克隆别人更新的项目：1）删除自己fork的项目；2）重新fork别人的项目；3）使用git pull指令重新拉取项目；
+	如果想避免每次都克隆别人更新的项目：1）删除自己fork的项目；2）重新fork别人的项目；3）使用git pull指令--取回远程仓库的变化，并与本地分支合并，重新拉取项目；
