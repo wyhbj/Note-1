@@ -252,10 +252,10 @@ DAY-1&2----2016.12.19&20
         快速排序--设定一个参考值，将其余值与参考值进行比较，将待比较数组拆分成[小于参考值],[参考值],[大于参考值]，逐次进行比较拆分，将待比较数组拆分成从小到大排列的n个数组，然后将这n个数组拼接起来，得到比较完的数组
         注：使用JS原生方法要比封装函数的方法执行速度更快
 JSON--一种轻量级数据交换格式--JavaScript Object Notation--数据类型是字符串
-		不支持undefined，内部字符串必须使用""，属性名必须用""包裹
-		eg:j = '{"name":"Lawrence","age":23}'
-		JSON.parse()--把JSON字符串转化为对象，这里的JSON为JSON对象；
-		JSON.stringify()--将对象转化为JSON字符串，这里的JSON为JSON对象；当对象中存在undefined时，该属性被跳过
+	不支持undefined，内部字符串必须使用""，属性名必须用""包裹
+	eg:j = '{"name":"Lawrence","age":23}'
+	JSON.parse()--把JSON字符串转化为对象，这里的JSON为JSON对象；
+	JSON.stringify(obj,function(key,value) {if (key =='属性名') {return 属性值} return value},格式化) --将对象转化为JSON字符串，这里的JSON为JSON对象；当对象中存在undefined或函数时，该属性被跳过；参数function为回调函数，可以实现转换完成后更改某个属性的属性值；参数格式化为[0-10]的数字；
 DAY-4----2016.12.22
 DOM---获取节点
 		文档(document)的本质是字符串，页面在解析时，调用JS解析器，把标签解析成对象，对象下的方法有许多操作方法，方便操作页面上元素;
