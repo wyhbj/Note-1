@@ -467,3 +467,19 @@ JS面向对象的三大核心---抽象；封装；继承；
 obj.hasOwnProperty(属性名)---判断某一个属性到底是本地属性，还是继承自prototype对象的属性；
 obj.constructor---查看某个对象是由哪个构造函数构造出来的；极易被修改，当使用对象被赋值的情况下，constructor会被修改，这时去查看对象的构造函数是不准确的；解决方法：手动修改constructor指向；
 instanceof---用于判断一个对象是否某个对象的实例；语法：对象 instanceof 实例化对象；
+DAY-4----2017.02.23
+面向对象的继承---拥有父类的属性与方法，同时拥有自己的属性与方法；
+当函数声明的时候，系统会默认自带一些方法和属性，如prototype、call()、apply()......
+call()---语法：fn.call(thisObj,arg1, arg2...) ；call方法可以改变函数体内部this的指向，将this的指向改为thisObj；如果没有提供thisObj参数，那么Global对象被用作thisObj
+apply()---语法：fn.apply(thisObj,[arg1,arg2...])；apply方法可以改变函数体内部this的指向，将this的指向改为thisObj；如果第二个参数不是一个有效的数组或者不是arguments对象，则会导致一个TypeError；如果两个参数中有任意一个没有写，则thisObj指向Global且无法传任何参数；
+常见继承
+	拷贝继承
+		属性继承--调用父类，通过call或者apply来修正this的指向来完成；
+		方法继承--for in父类原型下的方法并赋值给子类的原型；
+		注：在拷贝的时候会将非父类的属性和方法拷贝走，这是需要通过hasOwnProperty来判断拷贝的属性和方法是否属于父类；
+	类式继承(原型继承)
+		属性继承--调用父类，通过call或者apply来修正this的指向来完成；
+		方法继承--通过建立一个空对象作为中介，实现父类和子类的继承；由于空对象的存在，父类方法和子类方法并不是直接赋址，而是通过子类的原型与原型链找到父类上的相应的方法；此时，子类的原型的constructor的指向会被更改，所以需要手动更改；
+	对象继承
+toString()---将某种数据类型转化成字符串；所有的内置对象都有toString()；使用alert系统内部会调用toString；构造函数也有toString()，这个toString()是通过原型链查找找到的Object的toString()；也可以实现进制转化的功能--num.toString(radix)；对象身上的toString可以判断数据的数据类型，Object.prototype.toSting.call(数据)可以查看所有的数据类型，而Array.prototype.toSting.call(数据)能查看除数组以外的数据类型；
+	深度克隆--function extend(obj){	var toStr = Object.prototype.toString;	var o = toStr.call(obj) === '[object Array]'?[]:{};	for(var attr in obj)	{	if(typeof obj[attr] === 'object')	{o[attr] =  extend(obj[attr]);}	else{	o[attr] = obj[attr];}}		return o;}
