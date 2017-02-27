@@ -483,3 +483,65 @@ apply()---语法：fn.apply(thisObj,[arg1,arg2...])；apply方法可以改变函
 	对象继承
 toString()---将某种数据类型转化成字符串；所有的内置对象都有toString()；使用alert系统内部会调用toString；构造函数也有toString()，这个toString()是通过原型链查找找到的Object的toString()；也可以实现进制转化的功能--num.toString(radix)；对象身上的toString可以判断数据的数据类型，Object.prototype.toSting.call(数据)可以查看所有的数据类型，而Array.prototype.toSting.call(数据)能查看除数组以外的数据类型；
 	深度克隆--function extend(obj){	var toStr = Object.prototype.toString;	var o = toStr.call(obj) === '[object Array]'?[]:{};	for(var attr in obj)	{	if(typeof obj[attr] === 'object')	{o[attr] =  extend(obj[attr]);}	else{	o[attr] = obj[attr];}}		return o;}
+DAY-5----2017.02.24
+将类数组转化成数组
+	1.Array.from(类数组)；
+	2.Array.prototype.slice.call(类数组)；
+	3.[].slice.call(类数组)；
+组件--数据和方法的简单封装，将复用率高的模块封装起来，重复调用，从而达到快速开发的目的；
+自定义事件
+	映射--当绑定同一个事件多个函数的时候，相当于把每次绑定的事件push到对应事件的数组中；
+	触发器--当指定的系统事件被触发时，就循环对应的事件数组，依次执行数组中的函数；
+Forteenth Week
+DAY-1----2017.02.27
+jQuery---使用面向对象封装的JS类库；在jQuery中$()与jQuery()是等价的；
+	版本
+		1.xx--兼容IE低版本(没有新特性)；
+		3.xx--不兼容IE低版本，包含新特性；
+	选择器
+		基本选择器
+			id选择器--$('#id')；类选择器--$('.className')；元素选择器--$('tagName')；全选择器--$('*')；多重选择器--$('selector1,selector2...selectorN')--可以匹配()内的全部选择器；
+		属性选择器
+			[name|="value"]---选择属性名为name，属性值为value或value-的元素；
+			[name *= value]---选择属性名为name，属性值包含value的元素；
+			[name ^= value]---选择属性名为name，属性值以value开头的元素；
+			[name $= value]---选择属性名为name，属性值以value结尾的元素；
+			[name!=value]---选择属性名为name，属性值不为value的元素；
+			$(':button')---找到所有input的type为button的元素；
+			$(':checkbox')---找到所有input的type为checkbox的元素；
+			$(':checked')---选中的checkbox元素；
+			:even---选择index为偶数的元素，index从0开始计算；
+			:odd---选择index为奇数的元素，index从0开始计算；
+			:first-child---找到一组同级元素的第一个；
+			:last-child---找到一组同级元素的最后一个；
+			:gt(index)---找到相同类型元素中index大于某个值的元素；
+			:lt(index)---找到相同类型元素中index小于某个值的元素；
+			:eq(index)---找到相同类型元素中index等于某个值的元素；
+	在jQuery中调用某个方法，一般参数一为获取，参数二为设置；可以用{}来进行批量设置；attr可以获取并设置行间属性；prop方法设置或返回被选元素的属性和值，prop()和attr()可能返回不同的值，如获取checkBox的checked属性时，attr获取的是checked与undefined，而prop获取的是true和false；
+	$(document).ready(function(){})为页面结构加载完成后执行，也可写作$(function(){})；等同于原生JS中的document.addEventListener('DOMContentLoaded',function(){})；
+	$(selector).html()等同于原生JS中的selector.innerHTML；$(selector).text()等同于原生JS中的selector.innerTEXT；
+	jQuery中的循环---$(ele).each(function(索引,元素){})；
+	自己模拟写jQuery
+			(function(golbal,factory){
+				factory(golbal);
+			})(typeof window !== 'undefined'?window:this,function(golbal,noGolbal){
+				var version = "3.1.1",
+				jQuery = function(selector){
+					//无new化操作 //既想在外面调用的时候不new,还想自己不调用自己
+					return new jQuery.init(selector);
+				}
+				jQuery.prototype = {
+					constructor:jQuery,
+					css:function(){
+						console.log(1)
+					}
+				}
+				//jQuery.fn就相当于是个名字    创建这个构造函数就是个“炮灰”，为了防止递归用的
+				jQuery.init = jQuery.prototype.fn = function(selector){
+					
+				}
+				//意思jQ有的方法 jQuery.fn都有
+				jQuery.init.prototype = jQuery.prototype;
+				//给外面提供接口调用
+				window.$ = window.jQuery = jQuery;
+			});
