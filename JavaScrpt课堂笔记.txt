@@ -545,3 +545,20 @@ jQuery---使用面向对象封装的JS类库；在jQuery中$()与jQuery()是等�
 				//给外面提供接口调用
 				window.$ = window.jQuery = jQuery;
 			});
+DAY-2----2017.02.28
+在严格模式下，默认全局的this是undefined，其他的this指向不变；在"use strick"后执行的全部都是在全部模式下的；
+DOM对象与jQuery对象的互相转化
+	DOM对象转化jQuery对象--$(DOM)就可以将一个DOM对象转化成jQuery对象；
+	jQuery对象转化DOM对象---$(jQuery).get(index)就可以将一个jQuery对象转化成DOM对象；也可以写成$(jQuery)[index]；
+添加类名---addClass(className)；移除类名---removeClass(className)；
+index()--能够自动匹配*当前的元素在兄弟节点中的索引位置*；一般用index的时候，最好在index(精确匹配要找的元素)；
+找索引对应的元素---get(num)与eq(num)；区别---get是将jQery对象转原生，这个时候就用不了jQuery的方法了（原生元素），eq拿到的是jQuery元素，可以使用jQuery方法；
+siblings---以当前元素为基准，找到别的所有兄弟元素；一般使用需要在siblings(给个精确的范围)；
+在jQuery中return false不止可以阻止冒泡，也可以阻止默认事件；
+children()---找到某个元素下的所有子元素；find(selector)---找到某个元素下的所有指定的元素；parent()---找到某个元素的父元素；
+hide()---等同于display:none；show()---等同于display:block；
+closest---找到离自身最近的父级元素（*也包括自身*）；closest()一定要给他一个范围，不然会返回一个对象；
+prev()---上一个兄弟节点；next()---下一个兄弟节点；first()---第一个节点；last()---最后一个节点；
+append()---尾部添加；父元素.append(要插入的元素)；appendTo---尾部添加；要插入的元素.appendTo(父元素)；
+字符串模板---`<div>${data}</div>`；`字符串`，可以换行，$()内填写要添加的数据；
+头部添加---要添加的元素.insertAfter(添加到谁的后面)；要添加的元素.insertBefore(添加到谁的前面)；添加到谁的前面.before(要添加的元素):添加到的元素；添加到谁的后面.after(要添加的元素):添加到的元素；
