@@ -562,3 +562,17 @@ prev()---上一个兄弟节点；next()---下一个兄弟节点；first()---第�
 append()---尾部添加；父元素.append(要插入的元素)；appendTo---尾部添加；要插入的元素.appendTo(父元素)；
 字符串模板---`<div>${data}</div>`；`字符串`，可以换行，$()内填写要添加的数据；
 头部添加---要添加的元素.insertAfter(添加到谁的后面)；要添加的元素.insertBefore(添加到谁的前面)；添加到谁的前面.before(要添加的元素):添加到的元素；添加到谁的后面.after(要添加的元素):添加到的元素；
+DAY-3---2017.03.01---Last Month, good luck
+在jQuery中，所有的事件都是用addEventListener绑定的，所以当调用事件前需要将前一次的事件使用off()解绑；
+将所有匹配的元素替换成指定的元素---replaceWith；要替换的元素.replaceWith(被替换的元素)；或者是被替换的元素.replaceAll(要替换的元素)；
+克隆元素---被克隆的元素.clone(boolean)；要想克隆元素上的事件，参数为true，默认为false；
+设置行间自定义属性方法
+	1)div.key = value；2)div.setAttrbute('key','value')；3)div.datashe.key = value；
+获取宽高
+	width()；height()；获取到的值不带单位，传参可以进行设置；获取到的是内容的宽高，不包括padding和border；
+	innerWidth()；innerHeight()；获取到的值不带单位，传参可以进行设置，设置的值时内容+padding的值；获取到的值包括padding，不包括border；
+	outerWidth()；outerHeight()；获取到的值不带单位，传参可以进行设置；获取到的值包括padding和border，如果传参时传true则获取的值也包括margin；
+	offset()获取到的是元素的绝对位置，返回值是一个对象{top:x,left:x}；offset().top获取到的是当前位置到浏览器顶部的距离；offset().left获取到的是当前位置到浏览器左边界的距离；
+滚动条的距离---scrollTop()与scrollLeft()；设置滚动条的距离scrollTo(x,y)；
+绑定事件---on(events,[selector],[data],fn)，参数events为一个或多个用空格分隔的事件类型和可选的命名空间；参数selector为一个选择器字符串用于过滤器的触发事件的选择器元素的后代，如果选择的< null或省略，当它到达选定的元素，事件总是触发；参数data为当一个事件被触发时要传递event.data给事件处理函数；参数fn为该事件被触发时执行的函数， false值也可以做一个函数的简写，返回false，可以实现阻止submit等自带事件；在原生事件绑定的时候，如果出现事件套事件的情况，子事件又要用到父事件的变量时，那么这个变量要放到父事件的外面（可以是全局，也可以挂在某个对象上）；
+事件对象---与原生中相同，但是没有cancelBubble，可以使用return false来代替；jQ给事件绑定函数二次封装了ev对象，常规的属性或者方法都能使用，如果不能使用，可以调ev.originalEvent（原生的事件对象）
