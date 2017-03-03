@@ -576,3 +576,25 @@ DAY-3---2017.03.01---Last Month, good luck
 滚动条的距离---scrollTop()与scrollLeft()；设置滚动条的距离scrollTo(x,y)；
 绑定事件---on(events,[selector],[data],fn)，参数events为一个或多个用空格分隔的事件类型和可选的命名空间；参数selector为一个选择器字符串用于过滤器的触发事件的选择器元素的后代，如果选择的< null或省略，当它到达选定的元素，事件总是触发；参数data为当一个事件被触发时要传递event.data给事件处理函数；参数fn为该事件被触发时执行的函数， false值也可以做一个函数的简写，返回false，可以实现阻止submit等自带事件；在原生事件绑定的时候，如果出现事件套事件的情况，子事件又要用到父事件的变量时，那么这个变量要放到父事件的外面（可以是全局，也可以挂在某个对象上）；
 事件对象---与原生中相同，但是没有cancelBubble，可以使用return false来代替；jQ给事件绑定函数二次封装了ev对象，常规的属性或者方法都能使用，如果不能使用，可以调ev.originalEvent（原生的事件对象）
+DAY-4----2017.03.02
+jQuery运动
+	hide(time/speed)--隐藏；show(time/speed)--显示；toggle(time/speed)--显示隐藏切换；
+	slideDown(time/speed)--滑动隐藏；slideUp(time/speed)--滑动显示；slideToggle(time/speed)--滑动显示隐藏切换；
+	fadeOut(time/speed)--淡出；fadeIn(time/speed)--淡入；fadeToggle(time/speed)--淡入淡出切换；
+	animate(运动样式,运动时间,回调函数)；每次触发一个运动，都把运动放入运动队列中，当运动结束以后，出队列；
+	停止运动--stop(boolean,boolean)；第一个参数为--是否取消队列动画，当值为true时为将本次动画执行完，才执行下个动画；第二个参数--是否让当前动画立即完成；
+	delay(time)---使当前队列的下次运动延迟多少时间后执行；finish()---没有运动方式，直接到达目标点；
+工具方法
+	$.each(obj,callback)--遍历，可用于例遍任何对象；回调函数拥有两个参数：第一个为对象的成员或数组的索引，第二个为对应变量或内容；如果需要退出 each 循环可使回调函数返回 false，其它返回值将被忽略；
+	$.type(obj)--检测obj的数据类型；
+	$.isFunction()--检测当前数据是不是函数；
+	$.isNumeric()--检测当前数据是不是数字；
+	$.isArray()--检测当前数据是不是数组；
+	$.isEmptyObject()--检测是否是空白对象或是null；
+	$.isPlainObject()--检测是否是纯粹对象，不能是空对象，也不是数组；
+DAY-5----2017.03.03
+ajax---异步JavaScript和XML；ajax输出数据都为字符串；是一种创建交互式网页应用的网页开发技术；优点：优化用户体验--当用户操作页面时，不刷新页面，只刷新数据；减少服务器压力；
+XML--一般用来存储数据的，类似于html的展示形式，可以自定义标签，使用时要遵循一定规范；
+ajax交互模型--创建ajax对象--new XMLHttpRequest；ajax.open(请求方式--get/post,请求的地址,是否异步--默认为true)---填写请求信息；ajax.send()---向后端发送请求；ajax.onload--等待服务器返回相应的数据；ajax.responseText---得到服务器返回的信息；
+	请求方式get--通过url地址栏信息进行传输，不安全，且因浏览器不同，url长度也不同，所以传输数据的体积也会被限制；在ajax中使用get方式时，需要将请求的内容绑定在填写的地址上供后端进行查找；如果涉及到在IE下传输中文，需要使用encodeURI()去进行转化，防止解析出现问题；
+	请求方式post--通过服务器发送的方式进行传输，相对安全，常用于用户的私人的信息和体积比较大的信息，理论上传输的数据是无限大的，但会被后端给限制；在ajax.open()中就不需要绑定具体请求内容，传输的数据要放在ajax.send()中；在send前需要添加ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded")；因为设置了请求头，在发送数据前，就已经将数据格式统一了，所以不会出现中文编码错误的问题；
