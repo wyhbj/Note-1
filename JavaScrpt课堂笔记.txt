@@ -585,6 +585,7 @@ jQuery运动
 	停止运动--stop(boolean,boolean)；第一个参数为--是否取消队列动画，当值为true时为将本次动画执行完，才执行下个动画；第二个参数--是否让当前动画立即完成；
 	delay(time)---使当前队列的下次运动延迟多少时间后执行；finish()---没有运动方式，直接到达目标点；
 工具方法
+	$.extend(boolean,val1,val2)--将val2的值给val1，一般使用的使用不需要添加boolean，当要进行深度克隆时，参数boolean为true；
 	$.each(obj,callback)--遍历，可用于例遍任何对象；回调函数拥有两个参数：第一个为对象的成员或数组的索引，第二个为对应变量或内容；如果需要退出 each 循环可使回调函数返回 false，其它返回值将被忽略；
 	$.type(obj)--检测obj的数据类型；
 	$.isFunction()--检测当前数据是不是函数；
