@@ -627,3 +627,15 @@ ES6简单讲解
 	块级作用域：被{}包裹的区域为一个块级作用域，块级作用域支持嵌套，外层作用域无法读取内层作用域的变量(使用let声明)，内层作用域可以读取外层层作用域的变量(使用let声明)，自执行函数(function(){})()在ES6中可以写成{}；
 判断图片是否加载完成---只要是DOM元素就有onload事件
 	let img = document.createElement('img');	img.onload = function () {图片加载成功后执行的操作};	img.onerror = function () {图片加载不成功执行的操作};
+DAY-5---2017.03.10
+cookie--储存在用户终端上的数据(特殊的自定义属性，可以被浏览器追踪到)；对于大多数浏览器，cookie的体积都很小，最新版的chrome/Safari貌似没有cookie的限制；每个域名都有cookie的大小限制，一般为50个左右；主要用来辨别用户身份，进行session跟踪的数据；在本地无法使用，必须在服务器环境下使用；默认情况下，生命周期为关闭浏览器之前，关闭浏览器，数据老化；可以通过expires设置cookie的生命周期；设置cookie：document.cookie = 'key = value;expires = time'；获取cookie时，是将整个域名下的全部cookie值获取出来，值与值之间用;和空格隔开；
+服务器时间是以秒为单位的；JS时间是以毫秒为单位的；
+Sixteenth Week
+DAY-1---2017.03.13
+本地存储--localStorage;在高版本浏览器中控制台-->Application-->Local Storage下查看，低版本浏览器不支持；设置：localStorage.setItem(key,value)；获取：localStorage.getItem(key)；删除：localStorage.removeItem(key)；清空：localStorage.clearItem()；只要不删除，就会一直存在；每个域名下一般有5M的存储空间，根据浏览器不同数据有变化；非IE浏览器可以支持本地访问，但IE必须要在服务器环境下才能生效；
+window.addEventListener('storage',function(){})---当操作本地存储的数据时，在兄弟页面中触发，手动删除时会在当前页面触发事件，其余操作不会触发事件；必须在服务器环境下才能触发；
+本地储存---sessionStorage;通过控制台-->Application-->Session Storage下查看；设置：sessionStorage.setItem(key,value)；获取：sessionStorage.getItem(key)；删除：sessionStorage.removeItem(key)；清空：sessionStorage.clearItem()；关闭浏览器后，生命周期结束；不支持storage事件；
+模板引擎可以让（网站）程序实现界面与数据分离，业务代码与逻辑代码的分离，这就大大提升了开发效率，良好的设计也使得代码重用变得更加容易；
+artTemplate操作步骤：1.引入template.js文件--使用简介语法，或者template-native.js文件--使用原生语法；2.在页面建立一个空的容器，eg:<div id="box"></div>；3.建立一个script标签，script标签需要id，<script type="text/html" id="xx">；4.创建一个数据data={}；5.var xxx = template('xx', data);；6.$('#box').html(''+xxx);；7.在<script type="text/html" id="xx">内输入数据
+	artTemplate简洁语法地址https://github.com/aui/artTemplate/wiki/syntax:simple；{{与}}符号包裹起来的语句为模板的逻辑表达式；对内容编码输出：{{content}}，不编码输出：{{#content}}，编码可以防止数据中含有HTML字符串，避免引起XSS攻击--XSS是一种经常出现在web应用中的计算机安全漏洞，它允许恶意web用户将代码植入到提供给其它用户使用的页面中；条件表达式：{{if admin}}	<p>admin</p>	{{else if code > 0}}	<p>master</p>	{{else}}	<p>error!</p>	{{/if}}；遍历表达式：{{each list as value index}}	<li>{{index}} - {{value.user}}</li>	{{/each}}，无论数组或者对象都可以用each进行遍历，亦可以被简写为{{each list}}	<li>{{$index}} - {{$value.user}}</li>	{{/each}}，遍历数组写法：{{each list}}	<li>{{arr[$index]}}</li>	{{/each}}；
+	artTemplate原生语法地址https://github.com/aui/artTemplate/wiki/syntax:native：写法与原生JS相似，需要将内容用<%%>包裹；
