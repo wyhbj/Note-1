@@ -1,0 +1,2 @@
+vue.js强调的是组件的概念，推荐将html、css、js写在一个*.vue文件中，html部分用<template></template>包裹，css部分用<style></style>包裹，js部分用<script></script>包裹；
+*.vue文件时vue.js中特有的文件，在vue.js打包过程中被打成传统的html，css，js文件；

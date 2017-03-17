@@ -1,0 +1,43 @@
+1.移动端基本环境设置
+	1)声明meta
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />；其中name="viewport"是为了定义视口的详细信息；width=device-width是为了使页面宽度等于设备宽度；user-scalable为是否允许缩放 （no||yes），一般为no，注：ios10不支持该功能；initial-scale为初始比例；minimum-scale为允许缩放的最小比例；maximum-scale为允许缩放的最大比例
+	2)移动端适配
+		1.百分比适配
+			将需要设置的宽度使用百分比来设置，这样可以根据设备的宽度的不同自动设置当前宽度；
+		2.viewport适配--设置初始化缩放比例
+			<script>var iScale = 1 / window.devicePixelRatio; 	//定义一个缩放比例=1/像素比，缩放比例名称按个人喜好确定	document.write('<meta name="viewport" content="width=device-width,initial-scale='+iScale+',minimum-scale='+iScale+',maximum-scale='+iScale+',user-scalable=no"/>');</script>；建议使用DOM方法添加，性能较好；
+		3.设置单位rem进行适配
+			<script>var iWidth = document.documentElement.clientWidth;document.getElementsByTagName('html')[0].style.fontSize = iWidth / 64 + 'px'; 	//数字"64"处可按需更改，一般为16</script>
+		4.弹性盒模型适配
+	3)设置X5内核浏览器强制竖屏
+		<meta name = "x5-orientation" content = "portrait">；强制横屏需将portrait更改为landscape；X5内核浏览器包括：QQ浏览器，微信/QQ内置浏览器
+	4)设置X5内核浏览器全屏显示
+		<meta name = "x5-fullscreen" content = "true">
+	5)设置UC浏览器强制竖屏
+		<meta name = "screen-orientation" content = "portrat">；强制横屏需将portrait更改为landscape；
+	6)设置UC浏览器强制全屏显示
+		<meta name = "full-screen" content = "yes">
+	7)禁止识别电话号码和邮箱号码
+		<meta name = "format-detection" content = "telephone = no, email = no">；设置拨打电话或发送邮件：<a href="tel:电话号码"></a><a href="mailto:邮箱地址"></a>
+2.移动端清除默认样式与一些常见问题
+	1)清除点击时的阴影
+		-webkit-tap-highlight-color:rgba()/颜色名/#xxxxxx;input，a标签，button都需要清除；
+	2)清除按钮的圆角
+		-webkit-appearance:none;border-radius:0;注：直接设置border-radius是不生效的；
+	3)设置默认字体
+		font-family:Helvetica;注：只能设置英文字体；
+	4)禁止用户修改字体大小/禁止移动端横竖屏时字体大小的改变
+		-webkit-text-size-adjust:100%;
+	5)设置取消文字选中
+		-webkit-user-select:none;兼容性不好，在IOS系统下可以实现，在安卓系统下无法实现功能，不推荐使用，可以使用移动端事件来解决；
+	6)在一段文字没有设置高度的情况下，在webkit内核下，有可能会遇到文字大小被浏览器放大的情况(Font Boosting)，解决方法：1）设置高度；2）设置最大高度max-height;
+	移动端的固定定位兼容有问题，可以使用绝对定位来代替，不过最好使用移动端事件来解决；
+	7)在IOS系统的默认Safari浏览器下，给body设置overflow:hidden，横向超出的部分还是可以拖动；解决：将页面内容用一个div包裹起来，给body相对定位，让div的overflow:auto;；
+3.弹性盒模型--旧版
+	display:box;；注：使用的时候必须添加内核前缀，eg:display:-webkit-box;
+	设置主轴方向为水平方向：-webkit-box-orient:horizontal;；设置主轴方向为垂直方向：-webkit-box-orient:vertical;
+	设置主轴方向正序排列：-webkit-box-direction:normal;；设置主轴方向反序排列：-webkit-box-direction:reverse;；注：必须要先设置主轴方向后才可以设置排列方向；
+	主轴富裕空间管理：1)元素在主轴开始位置，富裕空间在主轴结束位置：-webkit-box-pack:start;2)元素在主轴开始结束，富裕空间在主轴开始位置：-webkit-box-pack:end;3)元素在主轴的中间位置，富裕空间在主轴的两侧：-webkit-box-pack:center;4)富裕空间平均分配在每两个元素中间：-webkit-box-pack:justify;
+	侧轴富裕空间管理：1)元素在侧轴开始位置，富裕空间在侧轴结束位置：-webkit-box-align:start;2)元素在侧轴开始结束，富裕空间在侧轴开始位置：-webkit-box-align:end;3)元素在侧轴的中间位置，富裕空间在侧轴的两侧：-webkit-box-align:center;
+	注：以上的属性都是设置给父级元素的；
+	元素的弹性空间：设置或检索弹性盒模型子集的扩展比率：-webkit-box-flex:num;当所有子集的box-flex相等时，子集的大小相同；设置元素位置：-webkit-box-ordinal-group:num;num越小位置越靠前，负值和0会被处理为1，建议不要使用；
