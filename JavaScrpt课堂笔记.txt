@@ -657,3 +657,18 @@ HTML5的拖拽
 	ondrop事件：被拖拽的元素在目标元素上同时鼠标放开触发的事件，此事件作用在目标元素上；
 	ondragend事件：当拖拽完成后触发的事件，此事件作用在被拖曳元素上；
 	如果要让ondrop事件生效，必须在document.ondragover内return false；
+DAY-5---2017.03.17
+兼容性
+	querySelector和querySelectorAll可以支持IE7以上；
+	getComputedStyle(obj).attr在IE9以下不兼容；低版本IE下可以使用obj.currentStyle.attr；
+	cssText兼容IE低版本，注意此时在批量设置样式的时候，原有的行间样式会被覆盖掉；setAttribute(key,value)在IE8以下浏览器设置样式的时候样式可以被写入但是无法显示；
+	String.trim()不兼容IE9以下的版本，可以封装正则方法替代：/^\s+|\s+$/；
+	Array.forEach()不兼容IE9以下版本，可以封装方法替代；
+	firstElementChild不兼容IE9以下的版本，获取的是父元素下的第一个子元素；firstChild兼容所有浏览器，在高版本浏览器中获取的是父元素下的第一个节点，而在低版本浏览器中获取的是第一个元素节点；其余特点相同的属性：lastElementChild与lastChild，previousElementSibling与previousSibling，nextElementSibling与nextSibling；
+	window.innerWidth/innerHeight在IE9以下的版本不兼容，在低版本浏览器下使用document.documentElement.clientWidth/clientHeight；在PC端建议使用后者；
+	window.pageXOffset/pageYOffset在IE9以下的版本不兼容；
+	offsetLeft正常使用：设置宽高,定位....，从而要触发IE下的haslayout；指定的定位父级一定要有定位，自身也要有定位(父级是相对，自己是绝对定位)；清除默认样式；
+	offsetHeight/clientHeight/scrollHeight正常使用：清除默认样式，设置相同的字体大小，除scrollHeight外尽量设置指定高度并添加样式overflow:hidden;
+	事件对象：在高版本浏览器下事件函数的第一个参数为事件对象，低版本浏览器中事件对象(event)在全局，只要有事件触发，就会有；
+	IE9一下版本不支持addEventListener，在低版本中使用attachEvent，attachEvent(event,function)只有冒泡阶段，没有捕获阶段，函数内部的this默认指向window，需用call改变this的指向，注attachEvent中的事件必须以on绑定，eg:attachEvent('onclick',function(){})；低版本浏览器中解绑事件使用detachEvent(event,function)
+	ajax：在IE6中可以使用微软专门的插件var ajax = new ActiveXObjeect('Microsoft XMLHTTP');
