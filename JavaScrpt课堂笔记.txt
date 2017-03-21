@@ -703,4 +703,32 @@ ES6
 		Object.setPrototypeOf(object,prototype)：用来设置一个对象的prototype对象；
 		__proto__属性（前后各两个下划线），用来读取或设置当前对象的prototype对象；
 	Symbol：ES6定义了一个新的数据类型--Symbol，表示独一无二的值；凡是属性名属于Symbol类型，就都是独一无二的，可以保证不会与其他属性名产生冲突；
+DAY-2---2017.03.21
+ES6
+	Generator函数：形式上，Generator 函数是一个普通函数，但是有两个特征，一是，function关键字与函数名之间有一个星号，二是，函数体内部使用yield语句，定义不同的内部状态；可以封装一个Generator函数，通过obj[Symbol.iterator] = fn;实现让对象使用for of循环；
+	Map：ES6新定义的一种数据结构，类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键，也就是说，Object结构提供了“字符串—值”的对应，Map结构提供了“值—值”的对应，是一种更完善的Hash结构实现，如果你需要“键值对”的数据结构，Map比Object更合适；
+		声明Map：var map = new Map()；
+		查看Map长度：Map.size；
+		添加key与value：Map.set(key,value)；
+		获取value值：Map.get(key)，返回一个value值；
+		查看有没有这个key：Map.has(key)；返回一个boolean；
+		删除某个键值：Map.delete(key);
+		清除全部键值：Map.clear()；
+		遍历方法：Map.keys()：返回键名的遍历器；Map.values()：返回键值的遍历器；Map.entries()：返回所有成员的遍历器；forEach()：遍历Map的所有成员，map.forEach(function(value, key, map) {console.log("Key: %s, Value: %s", key, value);});
+		将Map转化为数组：[...Map]；将数组转成Map：new Map([[true, 7], [{foo: 3}, ['abc']]])；
+	Set：ES6新定义的一种数据结构类似于数组，但是成员的值都是唯一的，没有重复的值；Set是一个构造函数，可以传入一个数组初始化默认值
+		声明Set：var set = new Set()；
+		查看Set长度：Set.size；
+		为Set的实例添加值：Set.add(value)；
+		查看有没有这个key：Set.has(key)；返回一个boolean；
+		删除某个键值：Set.delete(key);
+		清除全部键值：Set.clear()；
+	Class
+		this指向问题：当将Class的实例化对象中的某个方法解构出来使用的时候，方法中this的指向会变为undefined，此时，需要将Class中的方法使用bind()进行绑定，eg:this.say = this.say.bind(this)，此时被解构的方法中的this同样会指向这个实例化对象；
+		Class的继承：class 子类 extends 父类 {constructor(){super(name);}}，通过super()调用父类，要注意的是子类如果要调用this的方法，必须要写在super()语句下方，否则会报错，这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工，如果不调用super方法，子类就得不到this对象；super()还可以做对象使用来获取父类身上的属性或者方法；
+	Module：ES6新规定了Module--模块体系；模块功能主要由两个命令构成：export和import，export命令用于规定模块的对外接口，import命令用于输入其他模块提供的功能；
+		export：写法一--export var firstName = 'Michael';写法二--var firstName = 'Michael';var lastName = 'Jackson';var year = 1958;export {firstName, lastName, year};写法三--var n = 1;export {n as m};通过as关键字实现对输出变量的重命名;
+		import：写法一--import {firstName} from './输出文件路径';写法二--import {firstName,lastName,year} from './输出文件路径';写法三--import { lastName as surname } from './profile';通过as关键字实现对接收变量的重命名;
+		可以给emport语句设置default，这样import中接收的变量就不需要{}，eg:export default function crc32() {} // 输出		import crc32 from 'crc32'; // 输入
+		浏览器无法直接解析ES6的Module，所以需要使用webpack将ES6转化成ES5来实现，步骤(使用cli，需安装node)是：1)在本地文件中生成一个package.json--npm init，在生成的package.json文件的scripts对象下添加添加"key":"webpack"方便之后的运行，key值为任意值(Eng)；2)在本地文件中安装webpack--npm install webpack -D;3)手动在本地配置一个webpack.config.js文件--const path = require('path');	module.exports = {entry:[//变量输出js文件的路径		'./src/app.js'],output:{//把编译好的文件放在当前目录下的build下，build可以为任意值	path:path.resolve(__dirname,'build'),//__dirname:当前目录下	filename: '[name].js' // 可以打包为多个文件}};4)生成build文件夹及其内部内容--npm run key(key为package.json文件中键值为webpack的键名);	5)配置webpack.config.js，添加一个module属性--module:{//编译es6的//添加loader需要用rules	rules: [{test: /\.js$/,use:['babel-loader']}]}，根据匹配文件的不同use的属性值也不同；6)在index.html中引入build文件夹下的js文件，使用cli运行npm run key，打开页面，就可以得到变量输出js文件中操作的内容；
 
