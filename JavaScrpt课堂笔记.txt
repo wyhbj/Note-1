@@ -747,3 +747,20 @@ ES6
 			5)配置webpack.config.js，添加一个module属性
 				module:{//编译es6的//添加loader需要用rules	rules: [{test: /\.js$/,use:['babel-loader']}]}，根据匹配文件的不同use的属性值也不同；
 			6)在index.html中引入build文件夹下的js文件，使用cli运行npm run key，打开页面，就可以得到变量输出js文件中操作的内容；
+DAY-3---2017.03.22
+webpack插件使用
+	css插件--extract-text-webpack-plugin--把打包后的css文件，通过link方式注入到html中
+		1.在webpack.config.js文件中引入插件--const cssModule = require("extract-text-webpack-plugin");
+		2.配置相应Module模块--{test: /\.css$/,use: cssModule.extract({fallback: "style-loader",use: "css-loader"})}
+		3.在plugins中添加(如果没有plugins这项，则手动添加)--plugins:[cssModule('1.css')]，->1.css为编译后css文件的名字，注意:编译后css文件的目录是跟output，path路径走的。
+	html插件--html-webpack-plugin
+		1.在webpack.config.js文件中引入插件--const html = require('html-webpack-plugin');
+		2.在plugins中添加(如果没有plugins这项，则手动添加)--plugins:[new html({filename: '../index.html',template: 'index.html'})]，filename为编译后文件的位置，认为output.path的路径(默认路径写法：./index.html)，如果想跳出到上一级目录下则为../index.html；template为模板，表示被编译的html文件的模板；
+React--用于构建用户界面的javascript库；只是MVC架构中的V层；使用Virtual DOM方法，通过实现的DOM Diff算法来进行差异对比，从而实现反映到页面上就只渲染更新的部分；使用组件化开发的思想，把页面分割成N多个组件，好处是可组合，可复用，便于维护；数据流方向为单向数据流，即数据流信息只能从父级组件到子级组件的单向流动，不能反向；
+	不使用webpack的React开发--需要在html文件中引入react.js，react-dom.js文件；必须在html中建立一个空的容器，不能将内容直接render到body内部
+		不使用jsx语法的写法
+			let H = React.createElement('h1',{className:'active'},'你好!世界!');ReactDOM.render(H,document.getElementById('box'),callback)；
+		使用jsx语法的写法--需要在react.js，react-dom.js文件后引入browser.js，顺序不能颠倒；script标签必须为type="text/babel"；
+			let H = React.createClass({render:function(){return (<div><h1 className="active">我们来学习你啦!</h1><p>你们报错了!呵呵!(改了)</p><input type="text" /></div>)}});ReactDOM.render(<H />,document.getElementById('box'),callback)
+			使用这种方法需要注意render函数的return中顶级标签有且只能有一个，即不能存在一个与最外层标签同级的标签；如果标签中需要添加class需写成className；单标签必须有闭合符；组件名的首字母必须大写；
+	一般使用React进行项目开发时都会配合webpack一起使用！！
